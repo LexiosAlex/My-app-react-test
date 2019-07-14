@@ -1,0 +1,60 @@
+.logo__name {
+  margin-top: 40px;
+  padding: 20px;
+  color: #FFFFFF;
+  font-size: 45px;
+  font-weight: bold;
+  line-height: 50px;
+  text-align: center;
+  border: 3px solid #FFFFFF;
+  border-radius: 50%;
+}
+
+.page-main {
+  padding-top: 50px;
+  font-size: 20px;
+  line-height: 26px;
+}
+
+.button-header {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+.page-main {
+  padding-left: 50px;
+  padding-right: 50px;
+  min-height: 715px;
+}
+
+.page-main__nav-item {
+  text-align: center;
+}
+
+.visually-hidden {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+
+  border: 0;
+
+  clip: rect(0 0 0 0);
+}
+
+.page-main__nav-item--id {
+  text-transform: uppercase;
+}
+
+.category-extra-btn > span {
+  padding-top: 20px;
+  padding-left: 45px;
+  text-decoration: underline;
+}
+
+.page-main__row {
+  padding-bottom: 15px;
+}
