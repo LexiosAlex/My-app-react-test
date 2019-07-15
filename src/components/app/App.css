@@ -1,6 +1,7 @@
 .logo__name {
   margin-top: 40px;
   padding: 20px;
+  min-width: 240px;
   color: #FFFFFF;
   font-size: 45px;
   font-weight: bold;
@@ -24,7 +25,10 @@
 .page-main {
   padding-left: 50px;
   padding-right: 50px;
-  min-height: 715px;
+}
+
+.page-main__sidebar {
+  padding-top: 60px;
 }
 
 .page-main__nav-item {
@@ -43,18 +47,4 @@
   border: 0;
 
   clip: rect(0 0 0 0);
-}
-
-.page-main__nav-item--id {
-  text-transform: uppercase;
-}
-
-.category-extra-btn > span {
-  padding-top: 20px;
-  padding-left: 45px;
-  text-decoration: underline;
-}
-
-.page-main__row {
-  padding-bottom: 15px;
 }

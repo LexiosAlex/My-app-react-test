@@ -1,3 +1,12 @@
+.category {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 .category__main-btn > span {
     text-decoration: underline;
+}
+
+.category__main-btn--no-category {
+ margin-left: 45px;
 }
