@@ -3,9 +3,7 @@ import './Category.css';
 import 'antd/dist/antd.css';
 import {Button, Icon, Row} from 'antd';
 
-const Category = (props) => {
-  const {category} = props;
-
+const Category = ({category}) => {
   if (category.categoryTitle === 'noCategory') {
     return (
     <Row className='category'>
