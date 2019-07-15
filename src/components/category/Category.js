@@ -1,6 +1,5 @@
 import React from 'react';
 import './Category.css';
-import 'antd/dist/antd.css';
 import {Button, Icon, Row} from 'antd';
 
 const Category = ({category}) => {
