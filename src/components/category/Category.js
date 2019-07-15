@@ -12,18 +12,17 @@ const Category = ({category}) => {
       </Button>
     </Row>
     );
-  } else {
-    return (
-      <Row className='category'>
-        <Button type="primary">
-          <Icon type="close" />
-        </Button>
-        <Button className={'category__main-btn'} type="link">
-          {category.categoryName}
-        </Button>
-      </Row>
-    );
   }
+  return (
+    <Row className='category'>
+      <Button type="primary">
+        <Icon type="close" />
+      </Button>
+      <Button className={'category__main-btn'} type="link">
+        {category.categoryName}
+      </Button>
+    </Row>
+  );
 };
 
 export default Category;
