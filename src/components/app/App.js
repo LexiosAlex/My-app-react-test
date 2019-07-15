@@ -1,39 +1,38 @@
-import React from 'react';
-import './App.css';
-import { Layout, Row, Col, Button, Table} from 'antd';
-import Category from '../category/Category.js'
+import React from "react";
+import "./App.css";
+import { Layout, Row, Col, Button, Table } from "antd";
+import Category from "../category/Category.js";
 
 const ButtonGroup = Button.Group;
-const { Header, Footer, Content, Sider} = Layout;
-
+const { Header, Footer, Content, Sider } = Layout;
 
 const columns = [
   {
-    title: 'ID',
-    dataIndex: 'id',
-    key: 'id',
+    title: "ID",
+    dataIndex: "id",
+    key: "id"
   },
   {
-    title: 'Название товара',
-    dataIndex: 'name',
-    key: 'name',
-    render: text => <a href="javascript:;">{text}</a>,
+    title: "Название товара",
+    dataIndex: "name",
+    key: "name",
+    render: text => <a href="javascript:;">{text}</a>
   },
   {
-    title: 'Цена / закуп',
-    dataIndex: 'wholePrice',
-    key: 'wholePrice',
+    title: "Цена / закуп",
+    dataIndex: "wholePrice",
+    key: "wholePrice"
   },
   {
-    title: 'Цена',
-    dataIndex: 'price',
-    key: 'price',
+    title: "Цена",
+    dataIndex: "price",
+    key: "price"
   },
   {
-    title: '',
-    key: 'action',
+    title: "",
+    key: "action",
     render: () => (
-      <Row type='flex' justify='space-around'>
+      <Row type="flex" justify="space-around">
         <Button className="page-main__edit-category-btn" type="primary">
           Удалить
         </Button>
@@ -41,186 +40,187 @@ const columns = [
           Изменить
         </Button>
       </Row>
-    ),
-  },
+    )
+  }
 ];
 
 const data = [
   {
-    categoryName: 'Мясо',
-    categoryTitle: 'meat',
+    categoryName: "Мясо",
+    categoryTitle: "meat",
     items: [
       {
-        key: '1',
-        id: '1',
-        name: 'Товар 1',
-        wholePrice: '2200',
-        price: '2500',
-        category: 'meat',
+        key: "1",
+        id: "1",
+        name: "Товар 1",
+        wholePrice: "2200",
+        price: "2500",
+        category: "meat"
       },
       {
-        key: '2',
-        id: '2',
-        name: 'Товар 2',
-        wholePrice: '2200',
-        price: '2700',
-        category: 'meat'
+        key: "2",
+        id: "2",
+        name: "Товар 2",
+        wholePrice: "2200",
+        price: "2700",
+        category: "meat"
       },
       {
-        key: '3',
-        id: '3',
-        name: 'Товар 3',
-        wholePrice: '2200',
-        price: '2700',
-        category: 'meat'
+        key: "3",
+        id: "3",
+        name: "Товар 3",
+        wholePrice: "2200",
+        price: "2700",
+        category: "meat"
       },
       {
-        key: '4',
-        id: '4',
-        name: 'Товар 4',
-        wholePrice: '2200',
-        price: '2700',
-        category: 'meat'
-      },
+        key: "4",
+        id: "4",
+        name: "Товар 4",
+        wholePrice: "2200",
+        price: "2700",
+        category: "meat"
+      }
     ]
   },
   {
-    categoryName: 'Рыба',
-    categoryTitle: 'fish',
+    categoryName: "Рыба",
+    categoryTitle: "fish",
     items: [
       {
-        key: '1',
-        id: '1',
-        name: 'Товар 1',
-        wholePrice: '2200',
-        price: '2500',
-        category: 'fish',
+        key: "1",
+        id: "1",
+        name: "Товар 1",
+        wholePrice: "2200",
+        price: "2500",
+        category: "fish"
       },
       {
-        key: '2',
-        id: '2',
-        name: 'Товар 2',
-        wholePrice: '2200',
-        price: '2700',
-        category: 'fish',
+        key: "2",
+        id: "2",
+        name: "Товар 2",
+        wholePrice: "2200",
+        price: "2700",
+        category: "fish"
       },
       {
-        key: '3',
-        id: '3',
-        name: 'Товар 3',
-        wholePrice: '2200',
-        price: '2700',
-        category: 'fish',
+        key: "3",
+        id: "3",
+        name: "Товар 3",
+        wholePrice: "2200",
+        price: "2700",
+        category: "fish"
       },
       {
-        key: '4',
-        id: '4',
-        name: 'Товар 4',
-        wholePrice: '2200',
-        price: '2700',
-        category: 'fish',
-      },
+        key: "4",
+        id: "4",
+        name: "Товар 4",
+        wholePrice: "2200",
+        price: "2700",
+        category: "fish"
+      }
     ]
   },
   {
-    categoryName: 'Овощи',
-    categoryTitle: 'vegetables',
+    categoryName: "Овощи",
+    categoryTitle: "vegetables",
     items: [
       {
-        key: '1',
-        id: '1',
-        name: 'Товар 1',
-        wholePrice: '2200',
-        price: '2500',
-        category: 'vegetables',
+        key: "1",
+        id: "1",
+        name: "Товар 1",
+        wholePrice: "2200",
+        price: "2500",
+        category: "vegetables"
       },
       {
-        key: '2',
-        id: '2',
-        name: 'Товар 2',
-        wholePrice: '2200',
-        price: '2700',
-        category: 'vegetables',
+        key: "2",
+        id: "2",
+        name: "Товар 2",
+        wholePrice: "2200",
+        price: "2700",
+        category: "vegetables"
       },
       {
-        key: '3',
-        id: '3',
-        name: 'Товар 3',
-        wholePrice: '2200',
-        price: '2700',
-        category: 'vegetables',
+        key: "3",
+        id: "3",
+        name: "Товар 3",
+        wholePrice: "2200",
+        price: "2700",
+        category: "vegetables"
       },
       {
-        key: '4',
-        id: '4',
-        name: 'Товар 4',
-        wholePrice: '2200',
-        price: '2700',
-        category: 'vegetables',
-      },
+        key: "4",
+        id: "4",
+        name: "Товар 4",
+        wholePrice: "2200",
+        price: "2700",
+        category: "vegetables"
+      }
     ]
   },
   {
-    categoryName: 'Фрукты',
-    categoryTitle: 'fruits',
+    categoryName: "Фрукты",
+    categoryTitle: "fruits",
     items: [
       {
-        key: '1',
-        id: '1',
-        name: 'Товар 1',
-        wholePrice: '2200',
-        price: '2500',
-        category: 'fruits',
+        key: "1",
+        id: "1",
+        name: "Товар 1",
+        wholePrice: "2200",
+        price: "2500",
+        category: "fruits"
       },
       {
-        key: '2',
-        id: '2',
-        name: 'Товар 2',
-        wholePrice: '2200',
-        price: '2700',
-        category: 'fruits',
+        key: "2",
+        id: "2",
+        name: "Товар 2",
+        wholePrice: "2200",
+        price: "2700",
+        category: "fruits"
       },
       {
-        key: '3',
-        id: '3',
-        name: 'Товар 3',
-        wholePrice: '2200',
-        price: '2700',
-        category: 'fruits',
+        key: "3",
+        id: "3",
+        name: "Товар 3",
+        wholePrice: "2200",
+        price: "2700",
+        category: "fruits"
       },
       {
-        key: '4',
-        id: '4',
-        name: 'Товар 4',
-        wholePrice: '2200',
-        price: '2700',
-        category: 'fruits',
-      },
+        key: "4",
+        id: "4",
+        name: "Товар 4",
+        wholePrice: "2200",
+        price: "2700",
+        category: "fruits"
+      }
     ]
   },
   {
-    categoryName: 'Без категории',
-    categoryTitle: 'noCategory',
-    items: [
-
-    ]
-  },
+    categoryName: "Без категории",
+    categoryTitle: "noCategory",
+    items: []
+  }
 ];
 
 class App extends React.Component {
   render() {
     return (
-      <div className='App'>
+      <div className="App">
         <Layout>
-          <Header  style={{height:'auto'}} className='main-header'>
+          <Header style={{ height: "auto" }} className="main-header">
             <Row gutter={20}>
               <Col span={4}>
-                <a className='main-header__logo logo'>
-                  <p className='logo__name'>My-app</p>
+                <a className="main-header__logo logo">
+                  <p className="logo__name">My-app</p>
                 </a>
               </Col>
               <Col span={12} push={4}>
-                <div style={{paddingTop:'50px'}} className='main-header__button-container'>
+                <div
+                  style={{ paddingTop: "50px" }}
+                  className="main-header__button-container"
+                >
                   <ButtonGroup>
                     <Button className="button-header" type="primary">
                       Добавить товар
@@ -233,12 +233,17 @@ class App extends React.Component {
               </Col>
             </Row>
           </Header>
-          <Layout className='page-main'>
-            <Sider className='page-main__sidebar' style={{background:'#f0f2f5'}}>
-              <Row className='page-main__row' align={'bottom'} gutter={20}>
-                <p className='visually-hidden'>Категории</p>
+          <Layout className="page-main">
+            <Sider
+              className="page-main__sidebar"
+              style={{ background: "#f0f2f5" }}
+            >
+              <Row className="page-main__row" align={"bottom"} gutter={20}>
+                <p className="visually-hidden">Категории</p>
               </Row>
-              {data.map((it, i) => <Category key={`city-${i}`} category={it}/>)}
+              {data.map((it, i) => (
+                <Category key={`city-${i}`} category={it} />
+              ))}
             </Sider>
             <Content>
               <Table columns={columns} dataSource={data[0].items} />
@@ -252,4 +257,3 @@ class App extends React.Component {
 }
 
 export default App;
-
