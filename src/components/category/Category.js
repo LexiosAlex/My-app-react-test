@@ -7,7 +7,7 @@ const Category = ({category}) => {
   if (category.categoryTitle === 'noCategory') {
     return (
     <Row className='category'>
-      <Button className={'category__main-btn category__main-btn--no-category'} type="link">
+      <Button className='category__main-btn category__main-btn--no-category' type="link">
         {category.categoryName}
       </Button>
     </Row>
