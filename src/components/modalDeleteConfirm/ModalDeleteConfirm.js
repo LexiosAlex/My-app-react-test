@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./ModalDeleteConfirm.css";
 import { Modal } from "antd";
 
 class ModalDeleteConfirm extends React.Component {
@@ -13,15 +13,13 @@ class ModalDeleteConfirm extends React.Component {
     this.setState({ visible: this.props.visible });
   }
 
-  handleOk = e => {
-    console.log(e);
+  handleOk = () => {
     this.setState({
       visible: false
     });
   };
 
-  handleCancel = e => {
-    console.log(e);
+  handleCancel = () => {
     this.setState({
       visible: false
     });
@@ -30,7 +28,7 @@ class ModalDeleteConfirm extends React.Component {
   render() {
     return (
       <Modal
-        title="Basic Modal"
+        title="Хотите удалить категорию?"
         visible={this.state.visible}
         centered={true}
         okText={"Да"}
