@@ -7,7 +7,11 @@ class ModalDeleteConfirm extends React.Component {
     super(props);
   }
 
-  state = { visible: this.props.visible };
+  state = { visible: false };
+
+  componentWillReceiveProps() {
+    this.setState({ visible: this.props.visible });
+  }
 
   handleOk = e => {
     console.log(e);
@@ -28,12 +32,13 @@ class ModalDeleteConfirm extends React.Component {
       <Modal
         title="Basic Modal"
         visible={this.state.visible}
+        centered={true}
+        okText={"Да"}
         onOk={this.handleOk}
+        cancelText={"Нет"}
         onCancel={this.handleCancel}
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <p>Все товары в этой категории будут помечены "Без категории"</p>
       </Modal>
     );
   }
