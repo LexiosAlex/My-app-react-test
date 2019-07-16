@@ -94,15 +94,25 @@ class ModalWindow extends React.Component {
                 </Button>
               ]}
             >
-              <Select placeholder="Категория">
-                <Option value="categoryId1">Категория 1</Option>
-                <Option value="categoryId2">Категория 2</Option>
-                <Option value="categoryId3">Категория 3</Option>
-              </Select>
-              ,
-              <input placeholder={"Название"} />
-              <input placeholder={"Закупочная цена"} />
-              <input placeholder={"Розничная цена"} />
+              <div className="modal-window-body-container">
+                <Select
+                  placeholder="Категория"
+                  style={{
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    maxWidth: "250px",
+                    width: "100%",
+                    marginTop: "20px"
+                  }}
+                >
+                  <Option value="categoryId1">Категория 1</Option>
+                  <Option value="categoryId2">Категория 2</Option>
+                  <Option value="categoryId3">Категория 3</Option>
+                </Select>
+                <input placeholder={"Название"} />
+                <input placeholder={"Закупочная цена"} />
+                <input placeholder={"Розничная цена"} />
+              </div>
             </Modal>
           </div>
         );
