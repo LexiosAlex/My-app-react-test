@@ -221,12 +221,15 @@ class App extends React.Component {
                   className="main-header__button-container"
                 >
                   <ButtonGroup>
-                    <Button className="button-header" type="primary">
-                      Добавить товар
-                    </Button>
-                    <Button className="button-header" type="primary">
-                      Добавить категорию
-                    </Button>
+                    {/*<Button className="button-header" type="primary">*/}
+                    {/*  Добавить товар*/}
+                    {/*</Button>*/}
+                    <ModalWindow type={"add-item"} id={3} />
+                    <ModalWindow type={"add-category"} id={3} />
+
+                    {/*<Button className="button-header" type="primary">*/}
+                    {/*  Добавить категорию*/}
+                    {/*</Button>*/}
                   </ButtonGroup>
                 </div>
               </Col>

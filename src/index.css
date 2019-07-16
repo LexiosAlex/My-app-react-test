@@ -13,7 +13,8 @@ code {
 }
 
 .ant-modal .ant-modal-title,
-.ant-modal .ant-modal-footer {
+.ant-modal .ant-modal-footer,
+.ant-modal .ant-modal-body {
   text-align: center;
 }
 
@@ -24,3 +25,5 @@ code {
   padding-left: 31%;
   padding-right: 31%;
 }
+
+

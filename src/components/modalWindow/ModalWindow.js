@@ -1,6 +1,8 @@
 import React from "react";
 import "./ModalWindow.css";
-import { Button, Icon, Modal } from "antd";
+import { Button, Icon, Modal, input, Select } from "antd";
+
+const { Option } = Select;
 
 class ModalWindow extends React.Component {
   state = { visible: false };
@@ -62,6 +64,50 @@ class ModalWindow extends React.Component {
               cancelText={"Нет"}
               onCancel={this.handleCancel}
             />
+          </div>
+        );
+
+      case "add-item":
+        return (
+          <div className="modal-delete-confirm--category">
+            <Button
+              className="button-header"
+              type="primary"
+              onClick={this.showModal}
+            >
+              Добавить товар
+            </Button>
+            <Modal
+              title="Добавить товар?"
+              visible={this.state.visible}
+              centered={true}
+              okText={"Да"}
+              onOk={this.handleOk}
+              cancelText={"Нет"}
+              onCancel={this.handleCancel}
+            />
+          </div>
+        );
+
+      case "add-category":
+        return (
+          <div className="modal-delete-confirm--category">
+            <Button
+              className="button-header"
+              type="primary"
+              onClick={this.showModal}
+            >
+              Добавить категорию
+            </Button>
+            <Modal
+              title="Добавить категорию?"
+              visible={this.state.visible}
+              centered={true}
+              onCancel={this.handleCancel}
+              footer={[<Button key="submit">Сохранить</Button>]}
+            >
+              <input placeholder={"Название"} />
+            </Modal>
           </div>
         );
     }
