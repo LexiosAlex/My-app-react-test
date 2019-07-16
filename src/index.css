@@ -16,3 +16,11 @@ code {
 .ant-modal .ant-modal-footer {
   text-align: center;
 }
+
+.ant-modal .ant-modal-footer div {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  padding-left: 31%;
+  padding-right: 31%;
+}

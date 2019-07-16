@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { Layout, Row, Col, Button, Table } from "antd";
 import Category from "../category/Category.js";
+import ModalWindow from "../modalWindow/ModalWindow.js";
 
 const ButtonGroup = Button.Group;
 const { Header, Footer, Content, Sider } = Layout;
@@ -33,9 +34,7 @@ const columns = [
     key: "action",
     render: () => (
       <Row type="flex" justify="space-around">
-        <Button className="page-main__edit-category-btn" type="primary">
-          Удалить
-        </Button>
+        <ModalWindow type={"item-delete"} id={3} />
         <Button className="page-main__edit-category-btn" type="primary">
           Изменить
         </Button>
