@@ -35,9 +35,7 @@ const columns = [
     render: () => (
       <Row type="flex" justify="space-around">
         <ModalWindow type={"item-delete"} id={3} />
-        <Button className="page-main__edit-category-btn" type="primary">
-          Изменить
-        </Button>
+        <ModalWindow type={"item-change"} id={3} />
       </Row>
     )
   }
@@ -221,15 +219,8 @@ class App extends React.Component {
                   className="main-header__button-container"
                 >
                   <ButtonGroup>
-                    {/*<Button className="button-header" type="primary">*/}
-                    {/*  Добавить товар*/}
-                    {/*</Button>*/}
                     <ModalWindow type={"add-item"} id={3} />
                     <ModalWindow type={"add-category"} id={3} />
-
-                    {/*<Button className="button-header" type="primary">*/}
-                    {/*  Добавить категорию*/}
-                    {/*</Button>*/}
                   </ButtonGroup>
                 </div>
               </Col>

@@ -142,6 +142,47 @@ class ModalWindow extends React.Component {
             </Modal>
           </div>
         );
+
+      case "item-change": {
+        return (
+          <div className="modal-delete-confirm--category">
+            <Button type="primary" onClick={this.showModal}>
+              Изменить
+            </Button>
+            <Modal
+              title="Изменить товар?"
+              visible={this.state.visible}
+              centered={true}
+              onCancel={this.handleCancel}
+              footer={[
+                <Button key="submit" onClick={this.handleSave}>
+                  Сохранить
+                </Button>
+              ]}
+            >
+              <div className="modal-window-body-container">
+                <Select
+                  placeholder="Категория"
+                  style={{
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    maxWidth: "250px",
+                    width: "100%",
+                    marginTop: "20px"
+                  }}
+                >
+                  <Option value="categoryId1">Категория 1</Option>
+                  <Option value="categoryId2">Категория 2</Option>
+                  <Option value="categoryId3">Категория 3</Option>
+                </Select>
+                <input placeholder={"Название"} />
+                <input placeholder={"Закупочная цена"} />
+                <input placeholder={"Розничная цена"} />
+              </div>
+            </Modal>
+          </div>
+        );
+      }
     }
   }
 }
