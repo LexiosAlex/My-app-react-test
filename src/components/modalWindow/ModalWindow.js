@@ -25,6 +25,12 @@ class ModalWindow extends React.Component {
     });
   };
 
+  handleSave = () => {
+    this.setState({
+      visible: false
+    });
+  };
+
   render() {
     const { type, id } = this.props;
 
@@ -81,11 +87,23 @@ class ModalWindow extends React.Component {
               title="Добавить товар?"
               visible={this.state.visible}
               centered={true}
-              okText={"Да"}
-              onOk={this.handleOk}
-              cancelText={"Нет"}
               onCancel={this.handleCancel}
-            />
+              footer={[
+                <Button key="submit" onClick={this.handleSave}>
+                  Сохранить
+                </Button>
+              ]}
+            >
+              <Select placeholder="Категория">
+                <Option value="categoryId1">Категория 1</Option>
+                <Option value="categoryId2">Категория 2</Option>
+                <Option value="categoryId3">Категория 3</Option>
+              </Select>
+              ,
+              <input placeholder={"Название"} />
+              <input placeholder={"Закупочная цена"} />
+              <input placeholder={"Розничная цена"} />
+            </Modal>
           </div>
         );
 
@@ -104,7 +122,11 @@ class ModalWindow extends React.Component {
               visible={this.state.visible}
               centered={true}
               onCancel={this.handleCancel}
-              footer={[<Button key="submit">Сохранить</Button>]}
+              footer={[
+                <Button key="submit" onClick={this.handleSave}>
+                  Сохранить
+                </Button>
+              ]}
             >
               <input placeholder={"Название"} />
             </Modal>
