@@ -1,7 +1,7 @@
 import React from "react";
 import "./Category.css";
 import { Button, Row } from "antd";
-import ModalWindow from "../modalWindow/ModalWindow.js";
+import ModalDeleteCategory from "../modalDeleteCategory/ModalDeleteCategory.js";
 
 class Category extends React.Component {
   render() {
@@ -21,7 +21,7 @@ class Category extends React.Component {
     }
     return (
       <Row className="category">
-        <ModalWindow type={"del-category"} />
+        <ModalDeleteCategory />
         <Button className={"category__main-btn"} type="link">
           {category.categoryName}
         </Button>

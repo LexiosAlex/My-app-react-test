@@ -2,7 +2,10 @@ import React from "react";
 import "./App.css";
 import { Layout, Row, Col, Button, Table } from "antd";
 import Category from "../category/Category.js";
-import ModalWindow from "../modalWindow/ModalWindow.js";
+import ModalAddCategory from "../modalAddCategory/ModalAddCategory.js";
+import ModalAddItem from "../modalAddItem/ModalAddItem.js";
+import ModalChangeItem from "../modalChangeItem/ModalChangeItem.js";
+import ModalDeleteItem from "../modalDeleteItem/ModalDeleteItem.js";
 
 const ButtonGroup = Button.Group;
 const { Header, Footer, Content, Sider } = Layout;
@@ -34,8 +37,8 @@ const columns = [
     key: "action",
     render: () => (
       <Row type="flex" justify="space-around">
-        <ModalWindow type={"item-delete"} id={3} />
-        <ModalWindow type={"item-change"} id={3} />
+        <ModalDeleteItem id={3} />
+        <ModalChangeItem />
       </Row>
     )
   }
@@ -219,8 +222,8 @@ class App extends React.Component {
                   className="main-header__button-container"
                 >
                   <ButtonGroup>
-                    <ModalWindow type={"add-item"} id={3} />
-                    <ModalWindow type={"add-category"} id={3} />
+                    <ModalAddItem />
+                    <ModalAddCategory />
                   </ButtonGroup>
                 </div>
               </Col>
