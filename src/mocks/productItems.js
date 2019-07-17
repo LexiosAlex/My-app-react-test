@@ -144,3 +144,5 @@ const itemsData = [
     categoryId: 4
   }
 ];
+
+export default itemsData;

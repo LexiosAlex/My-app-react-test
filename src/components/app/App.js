@@ -46,6 +46,7 @@ const columns = [
 
 class App extends React.Component {
   render() {
+    const { data } = this.props;
     return (
       <div className="App">
         <Layout>
@@ -82,7 +83,7 @@ class App extends React.Component {
               ))}
             </Sider>
             <Content>
-              <Table columns={columns} dataSource={data[0].items} />
+              <Table columns={columns} dataSource={data[1].items} />
             </Content>
           </Layout>
           <Footer></Footer>

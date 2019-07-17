@@ -25,3 +25,5 @@ const categories = [
     categoryTitle: "fruits"
   }
 ];
+
+export default categories;
