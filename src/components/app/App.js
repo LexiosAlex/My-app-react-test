@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Layout, Row, Col, Button, Table } from "antd";
+import filterActiveCategoryItems from "../../filterActiveCategoryItems.js";
 import Category from "../category/Category.js";
 import ModalAddCategory from "../modalAddCategory/ModalAddCategory.js";
 import ModalAddItem from "../modalAddItem/ModalAddItem.js";
@@ -45,8 +46,13 @@ const columns = [
 ];
 
 class App extends React.Component {
+  state = {
+    activeCategoryId: 1
+  };
+
   render() {
-    const { data } = this.props;
+    const { data, onAddCategory } = this.props;
+    console.log(data);
     return (
       <div className="App">
         <Layout>
@@ -64,7 +70,10 @@ class App extends React.Component {
                 >
                   <ButtonGroup>
                     <ModalAddItem />
-                    <ModalAddCategory />
+                    <ModalAddCategory
+                      addCategoryHandle={onAddCategory}
+                      categories={data.categories}
+                    />
                   </ButtonGroup>
                 </div>
               </Col>
@@ -78,12 +87,18 @@ class App extends React.Component {
               <Row className="page-main__row" align={"bottom"} gutter={20}>
                 <p className="visually-hidden">Категории</p>
               </Row>
-              {data.map((it, i) => (
+              {data.categories.map((it, i) => (
                 <Category key={`city-${i}`} category={it} />
               ))}
             </Sider>
             <Content>
-              <Table columns={columns} dataSource={data[1].items} />
+              <Table
+                columns={columns}
+                dataSource={filterActiveCategoryItems(
+                  this.state.activeCategoryId,
+                  data.productsData
+                )}
+              />
             </Content>
           </Layout>
           <Footer></Footer>
