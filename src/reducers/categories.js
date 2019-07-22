@@ -14,7 +14,7 @@ const categoriesReducer = (state = { categories, productsData }, action) => {
     case "ADD_CATEGORY":
       return {
         categories: addCategory(),
-        productsData: [state.productsData]
+        productsData: state.productsData
       };
 
     case "CHANGE_CATEGORY":
