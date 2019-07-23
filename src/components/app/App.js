@@ -50,6 +50,10 @@ class App extends React.Component {
     activeCategoryId: 1
   };
 
+  onChangeCategory = id => {
+    this.setState({ activeCategoryId: id });
+  };
+
   render() {
     const { data, onAddCategory } = this.props;
     console.log(data);
@@ -88,7 +92,11 @@ class App extends React.Component {
                 <p className="visually-hidden">Категории</p>
               </Row>
               {data.categories.map((it, i) => (
-                <Category key={`city-${i}`} category={it} />
+                <Category
+                  key={`city-${i}`}
+                  category={it}
+                  changeCategory={this.onChangeCategory}
+                />
               ))}
             </Sider>
             <Content>

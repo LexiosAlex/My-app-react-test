@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "antd": "^3.20.2",
+    "npm": "^6.10.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",

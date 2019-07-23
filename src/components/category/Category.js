@@ -5,7 +5,7 @@ import ModalDeleteCategory from "../modalDeleteCategory/ModalDeleteCategory.js";
 
 class Category extends React.Component {
   render() {
-    const { category } = this.props;
+    const { category, changeCategory } = this.props;
 
     if (category.categoryTitle === "noCategory") {
       return (
@@ -13,6 +13,9 @@ class Category extends React.Component {
           <Button
             className="category__main-btn category__main-btn--no-category"
             type="link"
+            onClick={() => {
+              changeCategory(category.categoryId);
+            }}
           >
             {category.categoryName}
           </Button>
@@ -22,7 +25,13 @@ class Category extends React.Component {
     return (
       <Row className="category">
         <ModalDeleteCategory />
-        <Button className={"category__main-btn"} type="link">
+        <Button
+          className={"category__main-btn"}
+          type="link"
+          onClick={() => {
+            changeCategory(category.categoryId);
+          }}
+        >
           {category.categoryName}
         </Button>
       </Row>
