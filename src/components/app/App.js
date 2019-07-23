@@ -11,44 +11,50 @@ import ModalDeleteItem from "../modalDeleteItem/ModalDeleteItem.js";
 const ButtonGroup = Button.Group;
 const { Header, Footer, Content, Sider } = Layout;
 
-const columns = [
-  {
-    title: "ID",
-    dataIndex: "id",
-    key: "id"
-  },
-  {
-    title: "Название товара",
-    dataIndex: "name",
-    key: "name",
-    render: text => <a href="javascript:;">{text}</a>
-  },
-  {
-    title: "Цена / закуп",
-    dataIndex: "wholePrice",
-    key: "wholePrice"
-  },
-  {
-    title: "Цена",
-    dataIndex: "price",
-    key: "price"
-  },
-  {
-    title: "",
-    key: "action",
-    render: () => (
-      <Row type="flex" justify="space-around">
-        <ModalDeleteItem id={3} />
-        <ModalChangeItem />
-      </Row>
-    )
-  }
-];
-
 class App extends React.Component {
   state = {
     activeCategoryId: 1
   };
+
+  getColumns() {
+    const { onDeleteProduct } = this.props;
+    return [
+      {
+        title: "ID",
+        dataIndex: "id",
+        key: "id"
+      },
+      {
+        title: "Название товара",
+        dataIndex: "name",
+        key: "name",
+        render: text => <a href="javascript:;">{text}</a>
+      },
+      {
+        title: "Цена / закуп",
+        dataIndex: "wholePrice",
+        key: "wholePrice"
+      },
+      {
+        title: "Цена",
+        dataIndex: "price",
+        key: "price"
+      },
+      {
+        title: "",
+        key: "action",
+        render: product => (
+          <Row type="flex" justify="space-around">
+            <ModalDeleteItem
+              product={product}
+              onDeleteProduct={onDeleteProduct}
+            />
+            <ModalChangeItem />
+          </Row>
+        )
+      }
+    ];
+  }
 
   onChangeCategory = id => {
     this.setState({ activeCategoryId: id });
@@ -106,7 +112,7 @@ class App extends React.Component {
             </Sider>
             <Content>
               <Table
-                columns={columns}
+                columns={this.getColumns()}
                 dataSource={filterActiveCategoryItems(
                   this.state.activeCategoryId,
                   data.productsData

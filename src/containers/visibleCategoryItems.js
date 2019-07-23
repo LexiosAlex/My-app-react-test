@@ -1,6 +1,11 @@
 import { connect } from "react-redux";
 import App from "../components/app/App.js";
-import { addCategory, deleteCategory, addProduct } from "../actions/actions.js";
+import {
+  addCategory,
+  deleteCategory,
+  addProduct,
+  deleteProduct
+} from "../actions/actions.js";
 
 const mapStateToProps = state => {
   return {
@@ -18,6 +23,10 @@ const mapDispatchToProps = dispatch => ({
 
   onAddProduct: (categoryId, name, wholePrice, price, products) => {
     dispatch(addProduct(categoryId, name, wholePrice, price, products));
+  },
+
+  onDeleteProduct: id => {
+    dispatch(deleteProduct(id));
   }
 });
 

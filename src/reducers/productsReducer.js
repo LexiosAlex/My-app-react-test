@@ -16,6 +16,10 @@ const productsReducer = (state = { categories, productsData }, action) => {
     return state.productsData;
   };
 
+  const deleteProduct = id => {
+    return state.productsData.filter(item => item.id !== id);
+  };
+
   switch (action.type) {
     case "ADD_PRODUCT":
       return {
@@ -23,6 +27,18 @@ const productsReducer = (state = { categories, productsData }, action) => {
         productsData: addProduct()
       };
 
+    case "DELETE_PRODUCT":
+      return {
+        categories: state.categories,
+        productsData: deleteProduct(action.id)
+      };
+
+    case "CHANGE_PRODUCT": {
+      return {
+        categories: state.categories,
+        productsData: state.productsData
+      };
+    }
     default:
       return state;
   }

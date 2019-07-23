@@ -24,6 +24,11 @@ export const addCategory = (categories, name) => {
 //   };
 // };
 
+export const deleteProduct = id => ({
+  type: "DELETE_PRODUCT",
+  id: id
+});
+
 export const addProduct = (categoryId, name, wholePrice, price, products) => {
   return {
     type: "ADD_PRODUCT",
