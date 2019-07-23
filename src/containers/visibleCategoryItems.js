@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import App from "../components/app/App.js";
-import { addCategory } from "../actions/actions.js";
+import { addCategory, deleteCategory } from "../actions/actions.js";
 
 const mapStateToProps = state => {
   return {
@@ -11,16 +11,11 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   onAddCategory: (categories, name) => {
     dispatch(addCategory(categories, name));
+  },
+  onDeleteCategory: id => {
+    dispatch(deleteCategory(id));
   }
 });
-
-// const mapStateToProps = (state, ownProps) => ({
-//   active: ownProps.filter === state.visibilityFilter
-// });
-//
-// const mapDispatchToProps = (dispatch, ownProps) => ({
-//   onClick: () => dispatch(setVisibilityFilter(ownProps.filter))
-// });
 
 export default connect(
   mapStateToProps,

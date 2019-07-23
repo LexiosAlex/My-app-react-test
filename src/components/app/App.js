@@ -55,7 +55,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { data, onAddCategory } = this.props;
+    const { data, onAddCategory, onDeleteCategory } = this.props;
     console.log(data);
     return (
       <div className="App">
@@ -96,6 +96,7 @@ class App extends React.Component {
                   key={`city-${i}`}
                   category={it}
                   changeCategory={this.onChangeCategory}
+                  onDeleteCategory={onDeleteCategory}
                 />
               ))}
             </Sider>

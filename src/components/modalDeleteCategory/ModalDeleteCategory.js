@@ -3,7 +3,13 @@ import "./ModalDeleteCategory.css";
 import { Button, Modal, Icon } from "antd";
 import ModalWindowWrapper from "../../hocs/ModalWindowWrapper";
 
-const ModalDeleteCategory = ({ visible, hideModal, showModal }) => {
+const ModalDeleteCategory = ({
+  visible,
+  hideModal,
+  showModal,
+  onDeleteCategory,
+  id
+}) => {
   return (
     <div className="modal-delete-category">
       <Button type="primary" onClick={showModal}>
@@ -14,7 +20,10 @@ const ModalDeleteCategory = ({ visible, hideModal, showModal }) => {
         visible={visible}
         centered={true}
         okText={"Да"}
-        onOk={hideModal}
+        onOk={() => {
+          onDeleteCategory(id);
+          hideModal();
+        }}
         cancelText={"Нет"}
         onCancel={hideModal}
       >

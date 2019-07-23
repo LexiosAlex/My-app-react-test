@@ -10,6 +10,24 @@ const categoriesReducer = (state = { categories, productsData }, action) => {
     state.categories.push(newCategory);
     return state.categories;
   };
+
+  const deleteCategory = id => {
+    const filteredCategories = state.categories.filter(
+      category => category.categoryId !== id
+    );
+
+    state.productsData
+      .filter(item => item.categoryId === id)
+      .forEach(it => {
+        it.categoryId = 0;
+      });
+
+    return {
+      categories: filteredCategories,
+      productsData: state.productsData
+    };
+  };
+
   switch (action.type) {
     case "ADD_CATEGORY":
       return {
@@ -17,15 +35,9 @@ const categoriesReducer = (state = { categories, productsData }, action) => {
         productsData: state.productsData
       };
 
-    case "CHANGE_CATEGORY":
-      return {
-        selectedCategory: action.payload
-      };
+    case "DELETE_CATEGORY":
+      return deleteCategory(action.categoryId);
 
-    case "CHANGE_ITEMS":
-      return {
-        selectedItems: action.payload
-      };
     default:
       return state;
   }
