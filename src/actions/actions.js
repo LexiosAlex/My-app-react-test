@@ -14,16 +14,6 @@ export const addCategory = (categories, name) => {
   };
 };
 
-// export const changeItems = (items, selectedCategory) => {
-//   let filteredItems = items.filter(
-//     it => it.categoryId === selectedCategory.categoryId
-//   );
-//   return {
-//     type: "CHANGE_ITEMS",
-//     payload: filteredItems
-//   };
-// };
-
 export const deleteProduct = id => ({
   type: "DELETE_PRODUCT",
   id: id
@@ -45,3 +35,15 @@ export const deleteCategory = id => ({
   type: "DELETE_CATEGORY",
   categoryId: id
 });
+
+export const changeProduct = (id, categoryId, name, wholePrice, price) => {
+  return {
+    type: "CHANGE_PRODUCT",
+    id: id,
+    key: id,
+    categoryId: categoryId,
+    name: name,
+    wholePrice: wholePrice,
+    price: price
+  };
+};

@@ -17,7 +17,7 @@ class App extends React.Component {
   };
 
   getColumns() {
-    const { onDeleteProduct } = this.props;
+    const { onDeleteProduct, onChangeProduct, data } = this.props;
     return [
       {
         title: "ID",
@@ -49,7 +49,11 @@ class App extends React.Component {
               product={product}
               onDeleteProduct={onDeleteProduct}
             />
-            <ModalChangeItem />
+            <ModalChangeItem
+              product={product}
+              categories={data.categories}
+              onChangeProduct={onChangeProduct}
+            />
           </Row>
         )
       }

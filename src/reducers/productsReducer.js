@@ -16,8 +16,23 @@ const productsReducer = (state = { categories, productsData }, action) => {
     return state.productsData;
   };
 
-  const deleteProduct = id => {
-    return state.productsData.filter(item => item.id !== id);
+  const changeProductInArray = () => {
+    const productId = productsData.findIndex(it => it.id === action.id);
+    productsData[productId] = {
+      categoryId: action.categoryId,
+      id: action.id,
+      key: action.key,
+      name: action.name,
+      price: action.price,
+      wholePrice: action.wholePrice
+    };
+
+    console.log(productsData);
+    console.log(productsData[productId]);
+  };
+
+  const deleteProduct = () => {
+    return state.productsData.filter(item => item.id !== action.id);
   };
 
   switch (action.type) {
@@ -30,10 +45,12 @@ const productsReducer = (state = { categories, productsData }, action) => {
     case "DELETE_PRODUCT":
       return {
         categories: state.categories,
-        productsData: deleteProduct(action.id)
+        productsData: deleteProduct()
       };
 
     case "CHANGE_PRODUCT": {
+      console.log(action);
+      changeProductInArray();
       return {
         categories: state.categories,
         productsData: state.productsData

@@ -4,7 +4,8 @@ import {
   addCategory,
   deleteCategory,
   addProduct,
-  deleteProduct
+  deleteProduct,
+  changeProduct
 } from "../actions/actions.js";
 
 const mapStateToProps = state => {
@@ -27,6 +28,10 @@ const mapDispatchToProps = dispatch => ({
 
   onDeleteProduct: id => {
     dispatch(deleteProduct(id));
+  },
+
+  onChangeProduct: (id, categoryId, name, wholePrice, price) => {
+    dispatch(changeProduct(id, categoryId, name, wholePrice, price));
   }
 });
 
