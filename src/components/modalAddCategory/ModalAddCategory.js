@@ -4,16 +4,12 @@ import { Button, Modal, input } from "antd";
 import ModalWindowWrapper from "../../hocs/ModalWindowWrapper";
 
 class ModalAddCategory extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      inputValue: ""
-    };
-  }
+  state = {
+    inputValue: ""
+  };
   addCategory = name => {
     const { addCategoryHandle, categories, hideModal } = this.props;
-    if (name.length > 1) {
+    if (name.length > 0) {
       addCategoryHandle(categories, name);
     }
 

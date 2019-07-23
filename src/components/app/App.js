@@ -55,7 +55,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { data, onAddCategory, onDeleteCategory } = this.props;
+    const { data, onAddCategory, onDeleteCategory, onAddProduct } = this.props;
     console.log(data);
     return (
       <div className="App">
@@ -73,7 +73,11 @@ class App extends React.Component {
                   className="main-header__button-container"
                 >
                   <ButtonGroup>
-                    <ModalAddItem />
+                    <ModalAddItem
+                      onAddProduct={onAddProduct}
+                      categories={data.categories}
+                      products={data.productsData}
+                    />
                     <ModalAddCategory
                       addCategoryHandle={onAddCategory}
                       categories={data.categories}

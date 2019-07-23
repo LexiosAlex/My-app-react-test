@@ -1,15 +1,15 @@
-export const addCategory = (categories, name) => {
-  const getCategoriesIdMax = () => {
-    const numArr = [];
-    categories.forEach(it => {
-      numArr.push(it.categoryId);
-    });
-    return Math.max.apply(null, numArr);
-  };
+const getMaxId = itemsWithId => {
+  const numArr = [];
+  itemsWithId.forEach(it => {
+    numArr.push(it.categoryId);
+  });
+  return Math.max.apply(null, numArr);
+};
 
+export const addCategory = (categories, name) => {
   return {
     type: "ADD_CATEGORY",
-    categoryId: getCategoriesIdMax() + 1,
+    categoryId: getMaxId(categories) + 1,
     categoryName: name
   };
 };
@@ -24,12 +24,17 @@ export const addCategory = (categories, name) => {
 //   };
 // };
 
-export const addItem = () => {};
-
-export const changeCategory = selectedCategory => ({
-  type: "CHANGE_CATEGORY",
-  payload: selectedCategory
-});
+export const addProduct = (categoryId, name, wholePrice, price, products) => {
+  return {
+    type: "ADD_PRODUCT",
+    id: getMaxId(products) + 1,
+    key: getMaxId(products) + 1,
+    categoryId: categoryId,
+    name: name,
+    wholePrice: wholePrice,
+    price: price
+  };
+};
 
 export const deleteCategory = id => ({
   type: "DELETE_CATEGORY",
