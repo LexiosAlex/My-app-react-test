@@ -3,22 +3,25 @@ import categories from "../mocks/productCategories.js";
 
 const productsReducer = (state = { categories, productsData }, action) => {
   const addProduct = () => {
-    const newItem = {
-      key: action.key,
-      id: action.id,
-      name: action.name,
-      wholePrice: action.wholePrice,
-      price: action.price,
-      categoryId: action.categoryId
-    };
+    const newItem = [
+      {
+        key: action.key,
+        id: action.id,
+        name: action.name,
+        wholePrice: action.wholePrice,
+        price: action.price,
+        categoryId: action.categoryId
+      }
+    ];
 
-    state.productsData.push(newItem);
-    return state.productsData;
+    return [...state.productsData, ...newItem];
   };
 
   const changeProductInArray = () => {
     const productId = productsData.findIndex(it => it.id === action.id);
-    productsData[productId] = {
+    const arrayOfProducts = [...state.productsData];
+
+    arrayOfProducts[productId] = {
       categoryId: action.categoryId,
       id: action.id,
       key: action.key,
@@ -27,33 +30,34 @@ const productsReducer = (state = { categories, productsData }, action) => {
       wholePrice: action.wholePrice
     };
 
-    console.log(productsData);
-    console.log(productsData[productId]);
+    return arrayOfProducts;
   };
 
   const deleteProduct = () => {
-    return state.productsData.filter(item => item.id !== action.id);
+    const filteredArrayOfProducts = state.productsData.filter(
+      item => parseInt(item.id, 10) !== parseInt(action.id, 10)
+    );
+
+    return [...filteredArrayOfProducts];
   };
 
   switch (action.type) {
     case "ADD_PRODUCT":
       return {
-        categories: state.categories,
+        ...state,
         productsData: addProduct()
       };
 
     case "DELETE_PRODUCT":
       return {
-        categories: state.categories,
+        ...state,
         productsData: deleteProduct()
       };
 
     case "CHANGE_PRODUCT": {
-      console.log(action);
-      changeProductInArray();
       return {
-        categories: state.categories,
-        productsData: state.productsData
+        ...state,
+        productsData: changeProductInArray()
       };
     }
     default:

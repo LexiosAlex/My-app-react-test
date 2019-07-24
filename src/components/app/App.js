@@ -65,8 +65,8 @@ class App extends React.Component {
   };
 
   render() {
+    console.log(this.props);
     const { data, onAddCategory, onDeleteCategory, onAddProduct } = this.props;
-    console.log(data);
     return (
       <div className="App">
         <Layout>

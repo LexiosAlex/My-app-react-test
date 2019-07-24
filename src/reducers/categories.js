@@ -7,8 +7,8 @@ const categoriesReducer = (state = { categories, productsData }, action) => {
       categoryId: action.categoryId,
       categoryName: action.categoryName
     };
-    state.categories.push(newCategory);
-    return state.categories;
+
+    return [...state.categories, newCategory];
   };
 
   const deleteCategory = id => {
