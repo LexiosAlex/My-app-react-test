@@ -1,7 +1,6 @@
 import productsData from "../mocks/productItems.js";
-import categories from "../mocks/productCategories.js";
 
-const productsReducer = (state = { categories, productsData }, action) => {
+const productsReducer = (state = productsData, action) => {
   const addProduct = () => {
     const newItem = [
       {
@@ -18,19 +17,18 @@ const productsReducer = (state = { categories, productsData }, action) => {
   };
 
   const changeProductInArray = () => {
-    const productId = productsData.findIndex(it => it.id === action.id);
-    const arrayOfProducts = [...state.productsData];
-
-    arrayOfProducts[productId] = {
-      categoryId: action.categoryId,
-      id: action.id,
-      key: action.key,
-      name: action.name,
-      price: action.price,
-      wholePrice: action.wholePrice
-    };
-
-    return arrayOfProducts;
+    return state.productsData.map(item =>
+      item.id === action.id
+        ? {
+            categoryId: action.categoryId,
+            id: action.id,
+            key: action.key,
+            name: action.name,
+            price: action.price,
+            wholePrice: action.wholePrice
+          }
+        : item
+    );
   };
 
   const deleteProduct = () => {
@@ -43,23 +41,14 @@ const productsReducer = (state = { categories, productsData }, action) => {
 
   switch (action.type) {
     case "ADD_PRODUCT":
-      return {
-        ...state,
-        productsData: addProduct()
-      };
+      return addProduct();
 
     case "DELETE_PRODUCT":
-      return {
-        ...state,
-        productsData: deleteProduct()
-      };
+      return deleteProduct();
 
-    case "CHANGE_PRODUCT": {
-      return {
-        ...state,
-        productsData: changeProductInArray()
-      };
-    }
+    case "CHANGE_PRODUCT":
+      return changeProductInArray();
+
     default:
       return state;
   }

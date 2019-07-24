@@ -17,7 +17,7 @@ class App extends React.Component {
   };
 
   getColumns() {
-    const { onDeleteProduct, onChangeProduct, data } = this.props;
+    const { onDeleteProduct, onChangeProduct, categories } = this.props;
     return [
       {
         title: "ID",
@@ -51,7 +51,7 @@ class App extends React.Component {
             />
             <ModalChangeItem
               product={product}
-              categories={data.categories}
+              categories={categories}
               onChangeProduct={onChangeProduct}
             />
           </Row>
@@ -66,7 +66,13 @@ class App extends React.Component {
 
   render() {
     console.log(this.props);
-    const { data, onAddCategory, onDeleteCategory, onAddProduct } = this.props;
+    const {
+      categories,
+      productsData,
+      onAddCategory,
+      onDeleteCategory,
+      onAddProduct
+    } = this.props;
     return (
       <div className="App">
         <Layout>
@@ -85,12 +91,12 @@ class App extends React.Component {
                   <ButtonGroup>
                     <ModalAddItem
                       onAddProduct={onAddProduct}
-                      categories={data.categories}
-                      products={data.productsData}
+                      categories={categories}
+                      products={productsData}
                     />
                     <ModalAddCategory
                       addCategoryHandle={onAddCategory}
-                      categories={data.categories}
+                      categories={categories}
                     />
                   </ButtonGroup>
                 </div>
@@ -105,7 +111,7 @@ class App extends React.Component {
               <Row className="page-main__row" align={"bottom"} gutter={20}>
                 <p className="visually-hidden">Категории</p>
               </Row>
-              {data.categories.map((it, i) => (
+              {categories.map((it, i) => (
                 <Category
                   key={`city-${i}`}
                   category={it}
@@ -119,7 +125,7 @@ class App extends React.Component {
                 columns={this.getColumns()}
                 dataSource={filterActiveCategoryItems(
                   this.state.activeCategoryId,
-                  data.productsData
+                  productsData
                 )}
               />
             </Content>

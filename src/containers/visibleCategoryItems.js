@@ -10,7 +10,8 @@ import {
 
 const mapStateToProps = state => {
   return {
-    data: state.categoriesReducer
+    categories: state.categoriesReducer,
+    productsData: state.productsReducer
   };
 };
 

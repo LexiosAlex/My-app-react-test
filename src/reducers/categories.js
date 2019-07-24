@@ -1,7 +1,6 @@
 import productsData from "../mocks/productItems.js";
-import categories from "../mocks/productCategories.js";
 
-const categoriesReducer = (state = { categories, productsData }, action) => {
+const categoriesReducer = (state = productsData, action) => {
   const addCategory = () => {
     const newCategory = {
       categoryId: action.categoryId,
@@ -22,18 +21,12 @@ const categoriesReducer = (state = { categories, productsData }, action) => {
         it.categoryId = 0;
       });
 
-    return {
-      categories: filteredCategories,
-      productsData: state.productsData
-    };
+    return filteredCategories;
   };
 
   switch (action.type) {
     case "ADD_CATEGORY":
-      return {
-        categories: addCategory(),
-        productsData: state.productsData
-      };
+      return addCategory();
 
     case "DELETE_CATEGORY":
       return deleteCategory(action.categoryId);
