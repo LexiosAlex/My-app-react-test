@@ -13,11 +13,22 @@ const productsReducer = (state = productsData, action) => {
       }
     ];
 
-    return [...state.productsData, ...newItem];
+    return [...state, ...newItem];
+  };
+
+  const deleteCategory = id => {
+    const filteredProducts = [...state];
+    filteredProducts
+      .filter(item => item.categoryId === id)
+      .forEach(it => {
+        it.categoryId = 0;
+      });
+
+    return filteredProducts;
   };
 
   const changeProductInArray = () => {
-    return state.productsData.map(item =>
+    return state.map(item =>
       item.id === action.id
         ? {
             categoryId: action.categoryId,
@@ -32,9 +43,7 @@ const productsReducer = (state = productsData, action) => {
   };
 
   const deleteProduct = () => {
-    const filteredArrayOfProducts = state.productsData.filter(
-      item => parseInt(item.id, 10) !== parseInt(action.id, 10)
-    );
+    const filteredArrayOfProducts = state.filter(item => item.id !== action.id);
 
     return [...filteredArrayOfProducts];
   };
@@ -48,6 +57,9 @@ const productsReducer = (state = productsData, action) => {
 
     case "CHANGE_PRODUCT":
       return changeProductInArray();
+
+    case "DELETE_CATEGORY":
+      return deleteCategory(action.categoryId);
 
     default:
       return state;

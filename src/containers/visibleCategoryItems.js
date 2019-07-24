@@ -19,6 +19,7 @@ const mapDispatchToProps = dispatch => ({
   onAddCategory: (categories, name) => {
     dispatch(addCategory(categories, name));
   },
+
   onDeleteCategory: id => {
     dispatch(deleteCategory(id));
   },

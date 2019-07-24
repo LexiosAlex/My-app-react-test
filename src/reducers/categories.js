@@ -1,25 +1,21 @@
-import productsData from "../mocks/productItems.js";
+import categories from "../mocks/productCategories.js";
 
-const categoriesReducer = (state = productsData, action) => {
+const categoriesReducer = (state = categories, action) => {
   const addCategory = () => {
     const newCategory = {
       categoryId: action.categoryId,
       categoryName: action.categoryName
     };
 
-    return [...state.categories, newCategory];
+    return [...state, newCategory];
   };
 
   const deleteCategory = id => {
-    const filteredCategories = state.categories.filter(
+    const filteredCategories = state.filter(
       category => category.categoryId !== id
     );
 
-    state.productsData
-      .filter(item => item.categoryId === id)
-      .forEach(it => {
-        it.categoryId = 0;
-      });
+    console.log(filteredCategories);
 
     return filteredCategories;
   };
