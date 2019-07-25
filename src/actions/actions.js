@@ -1,23 +1,9 @@
-const getMaxCategoryId = itemsWithId => {
-  const numArr = [];
-  itemsWithId.forEach(it => {
-    numArr.push(it.categoryId);
-  });
-  return Math.max.apply(null, numArr);
-};
-
-const getMaxItemId = itemsWithId => {
-  const numArr = [];
-  itemsWithId.forEach(it => {
-    numArr.push(it.id);
-  });
-  return Math.max.apply(null, numArr);
-};
+const getMax = (items, fieldName) => Math.max(...items.map(i => i[fieldName]));
 
 export const addCategory = (categories, name) => {
   return {
     type: "ADD_CATEGORY",
-    categoryId: getMaxCategoryId(categories) + 1,
+    categoryId: getMax(categories, "categoryId") + 1,
     categoryName: name
   };
 };
@@ -30,8 +16,8 @@ export const deleteProduct = id => ({
 export const addProduct = (categoryId, name, wholePrice, price, products) => {
   return {
     type: "ADD_PRODUCT",
-    id: getMaxItemId(products) + 1,
-    key: getMaxItemId(products) + 1,
+    id: getMax(products, "id") + 1,
+    key: getMax(products, "id") + 1,
     categoryId: categoryId,
     name: name,
     wholePrice: wholePrice,
