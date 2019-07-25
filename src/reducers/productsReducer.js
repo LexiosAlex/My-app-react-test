@@ -2,18 +2,16 @@ import productsData from "../mocks/productItems.js";
 
 const productsReducer = (state = productsData, action) => {
   const addProduct = () => {
-    const newItem = [
-      {
-        key: action.key,
-        id: action.id,
-        name: action.name,
-        wholePrice: action.wholePrice,
-        price: action.price,
-        categoryId: action.categoryId
-      }
-    ];
+    const newItem = {
+      key: action.key,
+      id: action.id,
+      name: action.name,
+      wholePrice: action.wholePrice,
+      price: action.price,
+      categoryId: action.categoryId
+    };
 
-    return [...state, ...newItem];
+    return [...state, newItem];
   };
 
   const deleteCategory = id => {
@@ -43,9 +41,7 @@ const productsReducer = (state = productsData, action) => {
   };
 
   const deleteProduct = () => {
-    const filteredArrayOfProducts = state.filter(item => item.id !== action.id);
-
-    return [...filteredArrayOfProducts];
+    return state.filter(item => item.id !== action.id);
   };
 
   switch (action.type) {
