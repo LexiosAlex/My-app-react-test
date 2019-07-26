@@ -5,7 +5,8 @@ import {
   deleteCategory,
   addProduct,
   deleteProduct,
-  changeProduct
+  changeProduct,
+  asyncGetCategories
 } from "../actions/actions.js";
 
 const mapStateToProps = state => {
@@ -16,6 +17,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
+  onGetCategories: () => {
+    dispatch(asyncGetCategories());
+  },
+
   onAddCategory: (categories, name) => {
     dispatch(addCategory(categories, name));
   },

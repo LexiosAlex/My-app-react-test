@@ -1,3 +1,5 @@
+import getCategories from "../backend/getCategories.js";
+
 const getMax = (items, fieldName) => Math.max(...items.map(i => i[fieldName]));
 
 export const addCategory = (categories, name) => {
@@ -40,4 +42,11 @@ export const changeProduct = (id, categoryId, name, wholePrice, price) => {
     wholePrice: wholePrice,
     price: price
   };
+};
+
+export const asyncGetCategories = () => dispatch => {
+  setTimeout(() => {
+    console.log("i got categories");
+    dispatch({ type: "FETCH_CATEGORIES", payload: getCategories() });
+  }, 2000);
 };

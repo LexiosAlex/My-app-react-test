@@ -1,5 +1,5 @@
 import express from "express";
-import { productsData, categories } from "./db/db.js";
+import { productsData, categories } from "./src/db/db.js";
 const server = express();
 server.get("/api/products", (req, res) => {
   res.status(200).send({
@@ -13,7 +13,7 @@ server.get("/api/categories", (req, res) => {
   res.status(200).send({
     success: "true",
     message: "categories retrieved successfully",
-    productsData: categories
+    CategoriesData: categories
   });
 });
 const PORT = 5000;

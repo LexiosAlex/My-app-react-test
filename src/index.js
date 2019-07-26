@@ -1,14 +1,15 @@
 import React from "react";
 import "antd/dist/antd.css";
 import "./index.css";
-import App from "./containers/visibleCategoryItems.js";
+import App from "./containers/categoryItems.js";
 import { render } from "react-dom";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 import rootReducer from "./reducers/rootReducer.js";
+import reduxThunk from "redux-thunk";
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(reduxThunk));
 
 render(
   <Provider store={store}>

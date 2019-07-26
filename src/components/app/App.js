@@ -16,6 +16,11 @@ class App extends React.Component {
     activeCategoryId: 1
   };
 
+  componentDidMount() {
+    const { onGetCategories } = this.props;
+    onGetCategories();
+  }
+
   getColumns() {
     const { onDeleteProduct, onChangeProduct, categories } = this.props;
     return [
