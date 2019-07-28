@@ -47,6 +47,7 @@ export const changeProduct = (id, categoryId, name, wholePrice, price) => {
 export const asyncGetCategories = () => dispatch => {
   setTimeout(() => {
     console.log("i got categories");
+    console.log(getCategories());
     dispatch({ type: "FETCH_CATEGORIES", payload: getCategories() });
-  }, 2000);
+  }, 3000);
 };

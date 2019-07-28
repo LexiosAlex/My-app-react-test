@@ -11,13 +11,7 @@ const categoriesReducer = (state = categories, action) => {
   };
 
   const deleteCategory = id => {
-    const filteredCategories = state.filter(
-      category => category.categoryId !== id
-    );
-
-    console.log(filteredCategories);
-
-    return filteredCategories;
+    return state.filter(category => category.categoryId !== id);
   };
 
   switch (action.type) {
@@ -26,6 +20,9 @@ const categoriesReducer = (state = categories, action) => {
 
     case "DELETE_CATEGORY":
       return deleteCategory(action.categoryId);
+
+    case "FETCH_CATEGORIES":
+      return action.payload;
 
     default:
       return state;
