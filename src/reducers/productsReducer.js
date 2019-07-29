@@ -57,6 +57,9 @@ const productsReducer = (state = productsData, action) => {
     case "DELETE_CATEGORY":
       return deleteCategory(action.categoryId);
 
+    case "FETCH_PRODUCTS":
+      return action.payload;
+
     default:
       return state;
   }

@@ -17,8 +17,9 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    const { onGetCategories } = this.props;
+    const { onGetCategories, onGetProducts } = this.props;
     onGetCategories();
+    onGetProducts();
   }
 
   getColumns() {

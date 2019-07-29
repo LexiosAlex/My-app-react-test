@@ -1,4 +1,4 @@
-import getCategories from "../backend/getCategories.js";
+import axios from "axios";
 
 const getMax = (items, fieldName) => Math.max(...items.map(i => i[fieldName]));
 
@@ -45,9 +45,27 @@ export const changeProduct = (id, categoryId, name, wholePrice, price) => {
 };
 
 export const asyncGetCategories = () => dispatch => {
-  setTimeout(() => {
-    console.log("i got categories");
-    console.log(getCategories());
-    dispatch({ type: "FETCH_CATEGORIES", payload: getCategories() });
-  }, 3000);
+  dispatch({ type: "FETCHING_CATEGORIES" });
+  axios
+    .get("/api/categories")
+    .then(res => {
+      console.log(res);
+      dispatch({ type: "FETCH_CATEGORIES", payload: res.data.categoriesData });
+    })
+    .catch(error => {
+      dispatch({ type: "FETCH_CATEGORIES_ERROR", error });
+    });
+};
+
+export const asyncGetProducts = () => dispatch => {
+  dispatch({ type: "FETCHING_PRODUCTS" });
+  axios
+    .get("/api/products")
+    .then(res => {
+      console.log(res);
+      dispatch({ type: "FETCH_PRODUCTS", payload: res.data.productsData });
+    })
+    .catch(error => {
+      dispatch({ type: "FETCH_PRODUCTS_ERROR", error });
+    });
 };

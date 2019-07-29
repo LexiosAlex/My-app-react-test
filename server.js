@@ -13,7 +13,7 @@ server.get("/api/categories", (req, res) => {
   res.status(200).send({
     success: "true",
     message: "categories retrieved successfully",
-    CategoriesData: categories
+    categoriesData: categories
   });
 });
 const PORT = 5000;
