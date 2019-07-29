@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Layout, Row, Col, Button, Table } from "antd";
+import { Layout, Row, Col, Button, Table, Spin } from "antd";
 import filterActiveCategoryItems from "../../filterActiveCategoryItems.js";
 import Category from "../category/Category.js";
 import ModalAddCategory from "../modalAddCategory/ModalAddCategory.js";
@@ -79,6 +79,7 @@ class App extends React.Component {
       onDeleteCategory,
       onAddProduct
     } = this.props;
+
     return (
       <div className="App">
         <Layout>
@@ -117,23 +118,31 @@ class App extends React.Component {
               <Row className="page-main__row" align={"bottom"} gutter={20}>
                 <p className="visually-hidden">Категории</p>
               </Row>
-              {categories.list.map((it, i) => (
-                <Category
-                  key={`city-${i}`}
-                  category={it}
-                  changeCategory={this.onChangeCategory}
-                  onDeleteCategory={onDeleteCategory}
-                />
-              ))}
+              {categories.isLoading ? (
+                <Spin size={"large"} tip="Загрузка категорий..." />
+              ) : (
+                categories.list.map((it, i) => (
+                  <Category
+                    key={`city-${i}`}
+                    category={it}
+                    changeCategory={this.onChangeCategory}
+                    onDeleteCategory={onDeleteCategory}
+                  />
+                ))
+              )}
             </Sider>
             <Content>
-              <Table
-                columns={this.getColumns()}
-                dataSource={filterActiveCategoryItems(
-                  this.state.activeCategoryId,
-                  productsData.list
-                )}
-              />
+              {productsData.isLoading ? (
+                <Spin size={"large"} tip="Загрузка товаров..." />
+              ) : (
+                <Table
+                  columns={this.getColumns()}
+                  dataSource={filterActiveCategoryItems(
+                    this.state.activeCategoryId,
+                    productsData.list
+                  )}
+                />
+              )}
             </Content>
           </Layout>
           <Footer></Footer>
