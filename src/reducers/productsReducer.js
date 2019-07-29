@@ -1,6 +1,13 @@
 import productsData from "../mocks/productItems.js";
 
-const productsReducer = (state = productsData, action) => {
+const productsReducer = (
+  state = {
+    list: productsData,
+    isLoading: false,
+    isError: false
+  },
+  action
+) => {
   const addProduct = () => {
     const newItem = {
       key: action.key,
@@ -11,11 +18,11 @@ const productsReducer = (state = productsData, action) => {
       categoryId: action.categoryId
     };
 
-    return [...state, newItem];
+    return [...state.list, newItem];
   };
 
   const deleteCategory = id => {
-    const filteredProducts = [...state];
+    const filteredProducts = [...state.list];
     filteredProducts
       .filter(item => item.categoryId === id)
       .forEach(it => {
@@ -26,7 +33,7 @@ const productsReducer = (state = productsData, action) => {
   };
 
   const changeProductInArray = () => {
-    return state.map(item =>
+    return state.list.map(item =>
       item.id === action.id
         ? {
             categoryId: action.categoryId,
@@ -41,24 +48,55 @@ const productsReducer = (state = productsData, action) => {
   };
 
   const deleteProduct = () => {
-    return state.filter(item => item.id !== action.id);
+    return state.list.filter(item => item.id !== action.id);
   };
 
   switch (action.type) {
     case "ADD_PRODUCT":
-      return addProduct();
+      return {
+        ...state,
+        list: addProduct()
+      };
 
     case "DELETE_PRODUCT":
-      return deleteProduct();
+      return {
+        list: deleteProduct(),
+        isLoading: false,
+        isError: false
+      };
 
     case "CHANGE_PRODUCT":
-      return changeProductInArray();
+      return {
+        ...state,
+        list: changeProductInArray()
+      };
 
     case "DELETE_CATEGORY":
-      return deleteCategory(action.categoryId);
+      return {
+        ...state,
+        list: deleteCategory(action.categoryId)
+      };
+
+    case "FETCHING_PRODUCTS":
+      return {
+        list: [],
+        isLoading: true,
+        isError: false
+      };
+
+    case "FETCH_PRODUCTS_ERROR":
+      return {
+        list: [],
+        isLoading: false,
+        isError: true
+      };
 
     case "FETCH_PRODUCTS":
-      return action.payload;
+      return {
+        list: action.payload,
+        isLoading: false,
+        isError: false
+      };
 
     default:
       return state;
