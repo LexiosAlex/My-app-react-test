@@ -57,7 +57,7 @@ class App extends React.Component {
             />
             <ModalChangeItem
               product={product}
-              categories={categories}
+              categories={categories.list}
               onChangeProduct={onChangeProduct}
             />
           </Row>
@@ -97,12 +97,12 @@ class App extends React.Component {
                   <ButtonGroup>
                     <ModalAddItem
                       onAddProduct={onAddProduct}
-                      categories={categories}
-                      products={productsData}
+                      categories={categories.list}
+                      products={productsData.list}
                     />
                     <ModalAddCategory
                       addCategoryHandle={onAddCategory}
-                      categories={categories}
+                      categories={categories.list}
                     />
                   </ButtonGroup>
                 </div>
@@ -117,7 +117,7 @@ class App extends React.Component {
               <Row className="page-main__row" align={"bottom"} gutter={20}>
                 <p className="visually-hidden">Категории</p>
               </Row>
-              {categories.map((it, i) => (
+              {categories.list.map((it, i) => (
                 <Category
                   key={`city-${i}`}
                   category={it}
@@ -131,7 +131,7 @@ class App extends React.Component {
                 columns={this.getColumns()}
                 dataSource={filterActiveCategoryItems(
                   this.state.activeCategoryId,
-                  productsData
+                  productsData.list
                 )}
               />
             </Content>
