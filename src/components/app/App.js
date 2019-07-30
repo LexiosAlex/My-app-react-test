@@ -13,13 +13,14 @@ const { Header, Footer, Content, Sider } = Layout;
 
 class App extends React.Component {
   state = {
-    activeCategoryId: 1
+    activeCategoryId: 1,
+    activePage: 1
   };
 
   componentDidMount() {
     const { onGetCategories, onGetProducts } = this.props;
     onGetCategories();
-    onGetProducts();
+    onGetProducts(this.state.activeCategoryId, this.state.activePage);
   }
 
   getColumns() {

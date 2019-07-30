@@ -1,8 +1,6 @@
-import categories from "../mocks/productCategories.js";
-
 const categoriesReducer = (
   state = {
-    list: categories,
+    list: [],
     isLoading: false,
     isError: false
   },

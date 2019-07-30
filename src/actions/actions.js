@@ -1,4 +1,5 @@
 import axios from "axios";
+import getUrlString from "./../getUrlString.js";
 
 const getMax = (items, fieldName) => Math.max(...items.map(i => i[fieldName]));
 
@@ -47,7 +48,7 @@ export const changeProduct = (id, categoryId, name, wholePrice, price) => {
 export const asyncGetCategories = () => dispatch => {
   dispatch({ type: "FETCHING_CATEGORIES" });
   axios
-    .get("/api/categories")
+    .get(`/api/categories`)
     .then(res => {
       console.log(res);
       dispatch({ type: "FETCH_CATEGORIES", payload: res.data.categoriesData });
@@ -57,10 +58,10 @@ export const asyncGetCategories = () => dispatch => {
     });
 };
 
-export const asyncGetProducts = () => dispatch => {
+export const asyncGetProducts = (categoryId, page) => dispatch => {
   dispatch({ type: "FETCHING_PRODUCTS" });
   axios
-    .get("/api/products")
+    .get(`/api/products?${getUrlString(categoryId, page)}`)
     .then(res => {
       console.log(res);
       dispatch({ type: "FETCH_PRODUCTS", payload: res.data.productsData });

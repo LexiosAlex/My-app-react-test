@@ -1,8 +1,6 @@
-import productsData from "../mocks/productItems.js";
-
 const productsReducer = (
   state = {
-    list: productsData,
+    list: [],
     isLoading: false,
     isError: false
   },
