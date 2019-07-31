@@ -1,5 +1,4 @@
 import axios from "axios";
-import getUrlString from "./../getUrlString.js";
 
 const getMax = (items, fieldName) => Math.max(...items.map(i => i[fieldName]));
 
@@ -61,7 +60,9 @@ export const asyncGetCategories = () => dispatch => {
 export const asyncGetProducts = (categoryId, page) => dispatch => {
   dispatch({ type: "FETCHING_PRODUCTS" });
   axios
-    .get(`/api/products?${getUrlString(categoryId, page)}`)
+    .get("/api/products", {
+      params: { categoryId: categoryId, page: page }
+    })
     .then(res => {
       console.log(res);
       dispatch({ type: "FETCH_PRODUCTS", payload: res.data.productsData });

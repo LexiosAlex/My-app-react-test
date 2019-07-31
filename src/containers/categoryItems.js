@@ -22,8 +22,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(asyncGetCategories());
   },
 
-  onGetProducts: () => {
-    dispatch(asyncGetProducts());
+  onGetProducts: (categoryId, page) => {
+    dispatch(asyncGetProducts(categoryId, page));
   },
 
   onAddCategory: (categories, name) => {

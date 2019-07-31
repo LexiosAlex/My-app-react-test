@@ -4,6 +4,7 @@ import { productsData, categories } from "./src/db/db.js";
 const server = express();
 server.get("/api/products", (req, res) => {
   console.log(req.query);
+  // console.log(queryStringProductsParser(req.query, productsData));
   res.status(200).send({
     success: "true",
     message: "productsData retrieved successfully",

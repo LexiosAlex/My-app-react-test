@@ -68,7 +68,9 @@ class App extends React.Component {
   }
 
   onChangeCategory = id => {
+    const { onGetProducts } = this.props;
     this.setState({ activeCategoryId: id });
+    onGetProducts(id, this.state.activePage);
   };
 
   render() {
