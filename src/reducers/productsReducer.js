@@ -53,7 +53,7 @@ const productsReducer = (
     case "ADD_PRODUCT":
       return {
         ...state,
-        list: addProduct()
+        list: [...state.list, action.payload]
       };
 
     case "DELETE_PRODUCT":

@@ -15,16 +15,28 @@ export const deleteProduct = id => ({
   id: id
 });
 
-export const addProduct = (categoryId, name, wholePrice, price, products) => {
-  return {
-    type: "ADD_PRODUCT",
-    id: getMax(products, "id") + 1,
-    key: getMax(products, "id") + 1,
-    categoryId: categoryId,
-    name: name,
-    wholePrice: wholePrice,
-    price: price
-  };
+export const addProduct = (
+  categoryId,
+  name,
+  wholePrice,
+  price,
+  products
+) => dispatch => {
+  dispatch({ type: "ADDING_PRODUCTS" });
+  axios
+    .post("/api/products/create", {
+      categoryId: categoryId,
+      name: name,
+      wholePrice: wholePrice,
+      price: price
+    })
+    .then(res => {
+      console.log(res);
+      dispatch({ type: "ADD_PRODUCT", payload: res.data.product });
+    })
+    .catch(error => {
+      dispatch({ type: "ADD_PRODUCT_ERROR", error });
+    });
 };
 
 export const deleteCategory = id => ({
