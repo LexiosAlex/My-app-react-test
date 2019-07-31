@@ -6,6 +6,7 @@ import { productsData, categories } from "../src/db/db.js";
 const server = express();
 
 server.use(bodyParser.json);
+server.use(bodyParser.urlencoded({ extended: false }));
 
 server.get("/api/products", (req, res) => {
   console.log(req.query);
