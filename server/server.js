@@ -1,10 +1,9 @@
 import express from "express";
-import queryStringProductsParser from "./src/backend/queryStringProductsParser.js";
-import { productsData, categories } from "./src/db/db.js";
+import queryStringProductsParser from "./backend/queryStringProductsParser.js";
+import { productsData, categories } from "../src/db/db.js";
 const server = express();
 server.get("/api/products", (req, res) => {
   console.log(req.query);
-  // console.log(queryStringProductsParser(req.query, productsData));
   res.status(200).send({
     success: "true",
     message: "productsData retrieved successfully",
