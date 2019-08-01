@@ -55,16 +55,33 @@ export const deleteCategory = id => ({
   categoryId: id
 });
 
-export const changeProduct = (id, categoryId, name, wholePrice, price) => {
-  return {
-    type: "CHANGE_PRODUCT",
-    id: id,
-    key: id,
-    categoryId: categoryId,
-    name: name,
-    wholePrice: wholePrice,
-    price: price
-  };
+export const changeProduct = (
+  id,
+  categoryId,
+  name,
+  wholePrice,
+  price,
+  page
+) => dispatch => {
+  dispatch({ type: "CHANGING_PRODUCT" });
+  axios
+    .put("/api/product/change", {
+      id: id,
+      categoryId: categoryId,
+      name: name,
+      wholePrice: wholePrice,
+      price: price
+    })
+    .then(res => {
+      console.log(res);
+      dispatch({
+        type: "CHANGE_PRODUCT"
+      });
+      asyncGetProducts(categoryId, page);
+    })
+    .catch(error => {
+      dispatch({ type: "CHANGE_PRODUCT_ERROR", error });
+    });
 };
 
 export const asyncGetCategories = () => dispatch => {

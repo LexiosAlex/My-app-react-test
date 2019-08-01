@@ -26,7 +26,7 @@ const categories = [
   }
 ];
 
-let productsData = [
+const productsData = [
   {
     key: "1",
     id: "1",
@@ -173,4 +173,4 @@ let productsData = [
   }
 ];
 
-export { productsData, categories };
+export default { categories, productsData };

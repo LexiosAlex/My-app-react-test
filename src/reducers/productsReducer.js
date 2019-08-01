@@ -37,7 +37,7 @@ const productsReducer = (
   };
 
   switch (action.type) {
-    case "ADDING_PRODUCTS":
+    case "ADDING_PRODUCT":
       return {
         list: [],
         isLoading: true,
@@ -65,10 +65,25 @@ const productsReducer = (
         isError: false
       };
 
+    case "CHANGING_PRODUCT":
+      return {
+        list: [],
+        isLoading: true,
+        isError: false
+      };
+
+    case "CHANGE_PRODUCT_ERROR":
+      return {
+        list: [],
+        isLoading: false,
+        isError: true
+      };
+
     case "CHANGE_PRODUCT":
       return {
         ...state,
-        list: changeProductInArray()
+        isLoading: false,
+        isError: false
       };
 
     case "DELETE_CATEGORY":

@@ -14,7 +14,7 @@ class ModalChangeItem extends React.Component {
   };
 
   saveProduct = () => {
-    const { hideModal, onChangeProduct, products, product } = this.props;
+    const { hideModal, onChangeProduct, page, product } = this.props;
     if (
       this.state.inputValueCategory > -1 &&
       this.state.inputValueName.length > 0 &&
@@ -27,7 +27,7 @@ class ModalChangeItem extends React.Component {
         this.state.inputValueName,
         this.state.inputValueWholePrice,
         this.state.inputValuePrice,
-        products
+        page
       );
     }
 

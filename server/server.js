@@ -3,7 +3,7 @@ import queryStringProductsParser from "./backend/queryStringProductsParser.js";
 import getMax from "./backend/getMax.js";
 import changeProductInArray from "./backend/changeProductInArray.js";
 import bodyParser from "body-parser";
-import { productsData, categories } from "../src/db/db.js";
+import db from "../src/db/db.js";
 const server = express();
 
 server.use(bodyParser.json());
@@ -14,7 +14,7 @@ server.get("/api/products", (req, res) => {
   res.status(200).send({
     success: "true",
     message: "productsData retrieved successfully",
-    productsData: queryStringProductsParser(req.query, productsData)
+    productsData: queryStringProductsParser(req.query, db.productsData)
   });
 });
 
@@ -22,7 +22,7 @@ server.get("/api/categories", (req, res) => {
   res.status(200).send({
     success: "true",
     message: "categories retrieved successfully",
-    categoriesData: categories
+    categoriesData: db.categories
   });
 });
 
@@ -50,15 +50,15 @@ server.post("/api/products/create", (req, res) => {
     });
   }
   const product = {
-    id: getMax(productsData, "id") + 1,
-    key: getMax(productsData, "id") + 1,
+    id: getMax(db.productsData, "id") + 1,
+    key: getMax(db.productsData, "id") + 1,
     categoryId: req.body.categoryId,
     name: req.body.name,
     wholePrice: req.body.wholePrice,
     price: req.body.price
   };
 
-  productsData.push(product);
+  db.productsData.push(product);
   return res.status(201).send({
     success: "true",
     message: "product added successful",
@@ -75,15 +75,15 @@ server.post("/api/categories/create", (req, res) => {
     });
   }
   const category = {
-    categoryId: getMax(categories, "categoryId") + 1,
+    categoryId: getMax(db.categories, "categoryId") + 1,
     categoryName: req.body.categoryName
   };
 
-  categories.push(category);
+  db.categories.push(category);
   return res.status(201).send({
     success: "true",
     message: "category added successful",
-    categories
+    categories: db.categories
   });
 });
 
@@ -116,12 +116,11 @@ server.put("/api/product/change", (req, res) => {
     });
   }
 
-  productsData = changeProductInArray(req.body, productsData);
+  db.productsData = changeProductInArray(req.body, db.productsData);
 
   return res.status(201).send({
     success: "true",
-    message: "product added successful",
-    productsData
+    message: "product changed successful"
   });
 });
 const PORT = 5000;
