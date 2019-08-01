@@ -1,6 +1,7 @@
 import express from "express";
 import queryStringProductsParser from "./backend/queryStringProductsParser.js";
 import getMax from "./backend/getMax.js";
+import changeProductInArray from "./backend/changeProductInArray.js";
 import bodyParser from "body-parser";
 import { productsData, categories } from "../src/db/db.js";
 const server = express();
@@ -83,6 +84,44 @@ server.post("/api/categories/create", (req, res) => {
     success: "true",
     message: "category added successful",
     categories
+  });
+});
+
+server.put("/api/product/change", (req, res) => {
+  console.log(req.body);
+  if (!req.body.id) {
+    return res.status(400).send({
+      success: "false",
+      message: "id of product is required"
+    });
+  } else if (!req.body.categoryId) {
+    return res.status(400).send({
+      success: "false",
+      message: "id of category is required"
+    });
+  } else if (!req.body.name) {
+    return res.status(400).send({
+      success: "false",
+      message: "name is required"
+    });
+  } else if (!req.body.wholePrice) {
+    return res.status(400).send({
+      success: "false",
+      message: "wholePrice is required"
+    });
+  } else if (!req.body.price) {
+    return res.status(400).send({
+      success: "false",
+      message: "price is required"
+    });
+  }
+
+  productsData = changeProductInArray(req.body, productsData);
+
+  return res.status(201).send({
+    success: "true",
+    message: "product added successful",
+    productsData
   });
 });
 const PORT = 5000;

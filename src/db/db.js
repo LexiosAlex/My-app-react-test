@@ -26,7 +26,7 @@ const categories = [
   }
 ];
 
-const productsData = [
+let productsData = [
   {
     key: "1",
     id: "1",
