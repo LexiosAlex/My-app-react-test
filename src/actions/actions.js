@@ -2,12 +2,22 @@ import axios from "axios";
 
 const getMax = (items, fieldName) => Math.max(...items.map(i => i[fieldName]));
 
-export const addCategory = (categories, name) => {
-  return {
-    type: "ADD_CATEGORY",
-    categoryId: getMax(categories, "categoryId") + 1,
-    categoryName: name
-  };
+export const addCategory = name => dispatch => {
+  dispatch({ type: "ADDING_CATEGORY" });
+  axios
+    .post("/api/categories/create", {
+      categoryName: name
+    })
+    .then(res => {
+      console.log(res);
+      dispatch({
+        type: "ADD_CATEGORY",
+        payload: res.data.categories
+      });
+    })
+    .catch(error => {
+      dispatch({ type: "ADD_CATEGORY_ERROR", error });
+    });
 };
 
 export const deleteProduct = id => ({

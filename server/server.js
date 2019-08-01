@@ -64,6 +64,27 @@ server.post("/api/products/create", (req, res) => {
     product
   });
 });
+
+server.post("/api/categories/create", (req, res) => {
+  console.log(req.body);
+  if (!req.body.categoryName) {
+    return res.status(400).send({
+      success: "false",
+      message: "name of category is required"
+    });
+  }
+  const category = {
+    categoryId: getMax(categories, "categoryId") + 1,
+    categoryName: req.body.categoryName
+  };
+
+  categories.push(category);
+  return res.status(201).send({
+    success: "true",
+    message: "category added successful",
+    categories
+  });
+});
 const PORT = 5000;
 
 server.listen(PORT, () => {

@@ -8,9 +8,9 @@ class ModalAddCategory extends React.Component {
     inputValue: ""
   };
   addCategory = name => {
-    const { addCategoryHandle, categories, hideModal } = this.props;
+    const { addCategoryHandle, hideModal } = this.props;
     if (name.length > 0) {
-      addCategoryHandle(categories, name);
+      addCategoryHandle(name);
     }
 
     this.setState.inputValue = "";

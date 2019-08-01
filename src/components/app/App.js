@@ -102,13 +102,9 @@ class App extends React.Component {
                     <ModalAddItem
                       onAddProduct={onAddProduct}
                       categories={categories.list}
-                      products={productsData.list}
                       activeCategoryId={this.state.activeCategoryId}
                     />
-                    <ModalAddCategory
-                      addCategoryHandle={onAddCategory}
-                      categories={categories.list}
-                    />
+                    <ModalAddCategory addCategoryHandle={onAddCategory} />
                   </ButtonGroup>
                 </div>
               </Col>

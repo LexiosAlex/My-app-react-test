@@ -6,19 +6,6 @@ const productsReducer = (
   },
   action
 ) => {
-  const addProduct = () => {
-    const newItem = {
-      key: action.key,
-      id: action.id,
-      name: action.name,
-      wholePrice: action.wholePrice,
-      price: action.price,
-      categoryId: action.categoryId
-    };
-
-    return [...state.list, newItem];
-  };
-
   const deleteCategory = id => {
     const filteredProducts = [...state.list];
     filteredProducts

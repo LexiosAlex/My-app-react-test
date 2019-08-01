@@ -6,25 +6,31 @@ const categoriesReducer = (
   },
   action
 ) => {
-  const addCategory = () => {
-    const newCategory = {
-      categoryId: action.categoryId,
-      categoryName: action.categoryName
-    };
-
-    return [...state.list, newCategory];
-  };
-
   const deleteCategory = id => {
     return state.list.filter(category => category.categoryId !== id);
   };
 
   switch (action.type) {
     case "ADD_CATEGORY":
+      console.log(action.payload);
       return {
-        list: addCategory(),
+        list: action.payload,
         isLoading: false,
         isError: false
+      };
+
+    case "ADDING_CATEGORY":
+      return {
+        list: [],
+        isLoading: true,
+        isError: false
+      };
+
+    case "ADD_CATEGORY_ERROR":
+      return {
+        list: [],
+        isLoading: false,
+        isError: true
       };
 
     case "DELETE_CATEGORY":
