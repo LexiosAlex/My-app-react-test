@@ -20,9 +20,9 @@ export const addProduct = (
   name,
   wholePrice,
   price,
-  products
+  activeCategoryId
 ) => dispatch => {
-  dispatch({ type: "ADDING_PRODUCTS" });
+  dispatch({ type: "ADDING_PRODUCT" });
   axios
     .post("/api/products/create", {
       categoryId: categoryId,
@@ -32,7 +32,10 @@ export const addProduct = (
     })
     .then(res => {
       console.log(res);
-      dispatch({ type: "ADD_PRODUCT", payload: res.data.product });
+      dispatch({
+        type: "ADD_PRODUCT",
+        payload: activeCategoryId === categoryId ? res.data.product : []
+      });
     })
     .catch(error => {
       dispatch({ type: "ADD_PRODUCT_ERROR", error });

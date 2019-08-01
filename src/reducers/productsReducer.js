@@ -50,9 +50,24 @@ const productsReducer = (
   };
 
   switch (action.type) {
+    case "ADDING_PRODUCTS":
+      return {
+        list: [],
+        isLoading: true,
+        isError: false
+      };
+
+    case "ADD_PRODUCT_ERROR":
+      return {
+        list: [],
+        isLoading: false,
+        isError: true
+      };
+
     case "ADD_PRODUCT":
       return {
-        ...state,
+        isLoading: false,
+        isError: false,
         list: [...state.list, action.payload]
       };
 

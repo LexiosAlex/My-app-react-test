@@ -103,6 +103,7 @@ class App extends React.Component {
                       onAddProduct={onAddProduct}
                       categories={categories.list}
                       products={productsData.list}
+                      activeCategoryId={this.state.activeCategoryId}
                     />
                     <ModalAddCategory
                       addCategoryHandle={onAddCategory}
