@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const getMax = (items, fieldName) => Math.max(...items.map(i => i[fieldName]));
-
 export const addCategory = name => dispatch => {
   dispatch({ type: "ADDING_CATEGORY" });
   axios
