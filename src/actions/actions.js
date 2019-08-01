@@ -44,7 +44,7 @@ export const addProduct = (
       console.log(res);
       dispatch({
         type: "ADD_PRODUCT",
-        payload: activeCategoryId === categoryId ? res.data.product : []
+        payload: activeCategoryId === categoryId && res.data.product
       });
     })
     .catch(error => {
