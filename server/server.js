@@ -1,10 +1,12 @@
 import express from "express";
-import queryStringProductsParser from "./backend/queryStringProductsParser.js";
-import getMax from "./backend/getMax.js";
-import changeProductInArray from "./backend/changeProductInArray.js";
-import deleteProduct from "./backend/deleteProduct.js";
-import deleteCategory from "./backend/deleteCategory.js";
-import carryDeletedCategoryProducts from "./backend/carryDeletedCategoryProducts.js";
+import {
+  queryStringProductsParser,
+  getMax,
+  changeProductInArray,
+  deleteProduct,
+  deleteCategory,
+  carryDeletedCategoryProducts
+} from "./helpers/helpers.js";
 import bodyParser from "body-parser";
 import db from "../src/db/db.js";
 const server = express();

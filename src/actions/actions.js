@@ -1,4 +1,6 @@
 import axios from "axios";
+import { DEFAULT_PAGE } from "../constants";
+import { WITHOUT_CATEGORY_ID } from "../constants";
 
 export const addCategory = name => dispatch => {
   dispatch({ type: "ADDING_CATEGORY" });
@@ -77,7 +79,7 @@ export const deleteCategory = (id, activeCategory, page) => dispatch => {
       dispatch(asyncGetCategories());
       dispatch(
         id === activeCategory
-          ? asyncGetProducts(0, 1)
+          ? asyncGetProducts(WITHOUT_CATEGORY_ID, DEFAULT_PAGE)
           : asyncGetProducts(activeCategory, page)
       );
     })
