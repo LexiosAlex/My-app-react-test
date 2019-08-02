@@ -5,7 +5,13 @@ import ModalDeleteCategory from "../modalDeleteCategory/ModalDeleteCategory.js";
 
 class Category extends React.Component {
   render() {
-    const { category, changeCategory, onDeleteCategory } = this.props;
+    const {
+      category,
+      changeCategory,
+      activeCategory,
+      page,
+      onDeleteCategory
+    } = this.props;
 
     return (
       <Row className="category">
@@ -13,6 +19,8 @@ class Category extends React.Component {
           <ModalDeleteCategory
             onDeleteCategory={onDeleteCategory}
             id={category.categoryId}
+            activeCategory={activeCategory}
+            page={page}
           />
         )}
         <Button

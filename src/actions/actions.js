@@ -63,10 +63,28 @@ export const addProduct = (
     });
 };
 
-export const deleteCategory = id => ({
-  type: "DELETE_CATEGORY",
-  categoryId: id
-});
+export const deleteCategory = (id, activeCategory, page) => dispatch => {
+  dispatch({ type: "DELETING_CATEGORY" });
+  axios
+    .delete("/api/category/delete", {
+      params: { categoryId: id }
+    })
+    .then(res => {
+      console.log(res);
+      dispatch({
+        type: "DELETE_CATEGORY"
+      });
+      dispatch(asyncGetCategories());
+      dispatch(
+        id === activeCategory
+          ? asyncGetProducts(0, 1)
+          : asyncGetProducts(activeCategory, page)
+      );
+    })
+    .catch(error => {
+      dispatch({ type: "DELETE_CATEGORY_ERROR", error });
+    });
+};
 
 export const changeProduct = (
   id,

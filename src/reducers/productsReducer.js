@@ -81,10 +81,25 @@ const productsReducer = (
         isError: false
       };
 
+    case "DELETING_CATEGORY":
+      return {
+        list: [],
+        isLoading: true,
+        isError: false
+      };
+
+    case "DELETE_CATEGORY_ERROR":
+      return {
+        list: [],
+        isLoading: false,
+        isError: true
+      };
+
     case "DELETE_CATEGORY":
       return {
         ...state,
-        list: deleteCategory(action.categoryId)
+        isLoading: false,
+        isError: false
       };
 
     case "FETCHING_PRODUCTS":

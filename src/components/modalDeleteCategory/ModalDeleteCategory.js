@@ -8,7 +8,9 @@ const ModalDeleteCategory = ({
   hideModal,
   showModal,
   onDeleteCategory,
-  id
+  id,
+  activeCategory,
+  page
 }) => {
   return (
     <div className="modal-delete-category">
@@ -21,7 +23,7 @@ const ModalDeleteCategory = ({
         centered={true}
         okText={"Да"}
         onOk={() => {
-          onDeleteCategory(id);
+          onDeleteCategory(id, activeCategory, page);
           hideModal();
         }}
         cancelText={"Нет"}

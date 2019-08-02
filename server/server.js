@@ -3,6 +3,8 @@ import queryStringProductsParser from "./backend/queryStringProductsParser.js";
 import getMax from "./backend/getMax.js";
 import changeProductInArray from "./backend/changeProductInArray.js";
 import deleteProduct from "./backend/deleteProduct.js";
+import deleteCategory from "./backend/deleteCategory.js";
+import carryDeletedCategoryProducts from "./backend/carryDeletedCategoryProducts.js";
 import bodyParser from "body-parser";
 import db from "../src/db/db.js";
 const server = express();
@@ -139,6 +141,28 @@ server.delete("/api/product/delete", (req, res) => {
   return res.status(201).send({
     success: "true",
     message: "product deleted successful"
+  });
+});
+
+server.delete("/api/category/delete", (req, res) => {
+  console.log(req.query);
+  if (!req.query.categoryId) {
+    return res.status(400).send({
+      success: "false",
+      message: "id of category is required"
+    });
+  }
+
+  console.log(deleteCategory(req.query.categoryId, db.categories));
+  db.categories = deleteCategory(req.query.categoryId, db.categories);
+  db.productsData = carryDeletedCategoryProducts(
+    req.query.categoryId,
+    db.productsData
+  );
+
+  return res.status(201).send({
+    success: "true",
+    message: "category deleted successful"
   });
 });
 

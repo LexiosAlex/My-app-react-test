@@ -131,6 +131,8 @@ class App extends React.Component {
                     category={it}
                     changeCategory={this.onChangeCategory}
                     onDeleteCategory={onDeleteCategory}
+                    activeCategory={this.state.activeCategoryId}
+                    page={this.state.activePage}
                   />
                 ))
               )}

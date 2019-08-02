@@ -33,9 +33,23 @@ const categoriesReducer = (
         isError: true
       };
 
+    case "DELETING_CATEGORY":
+      return {
+        list: [],
+        isLoading: true,
+        isError: false
+      };
+
+    case "DELETE_CATEGORY_ERROR":
+      return {
+        list: [],
+        isLoading: false,
+        isError: true
+      };
+
     case "DELETE_CATEGORY":
       return {
-        list: deleteCategory(action.categoryId),
+        ...state,
         isLoading: false,
         isError: false
       };

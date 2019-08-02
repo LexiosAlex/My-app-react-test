@@ -30,8 +30,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(addCategory(name));
   },
 
-  onDeleteCategory: id => {
-    dispatch(deleteCategory(id));
+  onDeleteCategory: (id, activeCategory, page) => {
+    dispatch(deleteCategory(id, activeCategory, page));
   },
 
   onAddProduct: (categoryId, name, wholePrice, price, activeCategoryId) => {
