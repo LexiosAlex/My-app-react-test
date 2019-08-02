@@ -17,21 +17,6 @@ const productsReducer = (
     return filteredProducts;
   };
 
-  const changeProductInArray = () => {
-    return state.list.map(item =>
-      item.id === action.id
-        ? {
-            categoryId: action.categoryId,
-            id: action.id,
-            key: action.key,
-            name: action.name,
-            price: action.price,
-            wholePrice: action.wholePrice
-          }
-        : item
-    );
-  };
-
   switch (action.type) {
     case "ADDING_PRODUCT":
       return {
