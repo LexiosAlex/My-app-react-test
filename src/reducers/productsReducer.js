@@ -6,17 +6,6 @@ const productsReducer = (
   },
   action
 ) => {
-  const deleteCategory = id => {
-    const filteredProducts = [...state.list];
-    filteredProducts
-      .filter(item => item.categoryId === id)
-      .forEach(it => {
-        it.categoryId = 0;
-      });
-
-    return filteredProducts;
-  };
-
   switch (action.type) {
     case "ADDING_PRODUCT":
       return {
