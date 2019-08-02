@@ -2,6 +2,7 @@ import express from "express";
 import queryStringProductsParser from "./backend/queryStringProductsParser.js";
 import getMax from "./backend/getMax.js";
 import changeProductInArray from "./backend/changeProductInArray.js";
+import deleteProduct from "./backend/deleteProduct.js";
 import bodyParser from "body-parser";
 import db from "../src/db/db.js";
 const server = express();
@@ -121,6 +122,22 @@ server.put("/api/product/change", (req, res) => {
   return res.status(201).send({
     success: "true",
     message: "product changed successful"
+  });
+});
+
+server.delete("/api/product/delete", (req, res) => {
+  if (!req.body.id) {
+    return res.status(400).send({
+      success: "false",
+      message: "id of product is required"
+    });
+  }
+
+  db.productsData = deleteProduct(req.body.id, db.productsData);
+
+  return res.status(201).send({
+    success: "true",
+    message: "product deleted successful"
   });
 });
 

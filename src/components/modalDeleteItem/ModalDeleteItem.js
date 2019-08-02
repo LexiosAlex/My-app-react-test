@@ -10,6 +10,8 @@ class ModalDeleteItem extends React.Component {
       hideModal,
       showModal,
       product,
+      activeCategory,
+      page,
       onDeleteProduct
     } = this.props;
     return (
@@ -23,7 +25,7 @@ class ModalDeleteItem extends React.Component {
           centered={true}
           okText={"Да"}
           onOk={() => {
-            onDeleteProduct(product.id);
+            onDeleteProduct(product.id, activeCategory, page);
             hideModal();
           }}
           cancelText={"Нет"}

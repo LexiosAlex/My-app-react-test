@@ -55,6 +55,8 @@ class App extends React.Component {
             <ModalDeleteItem
               product={product}
               onDeleteProduct={onDeleteProduct}
+              page={this.state.activePage}
+              activeCategory={this.state.activeCategoryId}
             />
             <ModalChangeItem
               product={product}

@@ -18,10 +18,23 @@ export const addCategory = name => dispatch => {
     });
 };
 
-export const deleteProduct = id => ({
-  type: "DELETE_PRODUCT",
-  id: id
-});
+export const deleteProduct = (id, activeCategory, page) => dispatch => {
+  dispatch({ type: "DELETING_PRODUCT" });
+  axios
+    .delete("/api/product/delete", {
+      id: id
+    })
+    .then(res => {
+      console.log(res);
+      dispatch({
+        type: "DELETE_PRODUCT"
+      });
+      dispatch(asyncGetProducts(activeCategory, page));
+    })
+    .catch(error => {
+      dispatch({ type: "DELETE_PRODUCT_ERROR", error });
+    });
+};
 
 export const addProduct = (
   categoryId,

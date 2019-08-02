@@ -58,9 +58,23 @@ const productsReducer = (
         list: [...state.list, action.payload]
       };
 
+    case "DELETING_PRODUCT":
+      return {
+        list: [],
+        isLoading: true,
+        isError: false
+      };
+
+    case "DELETE_PRODUCT_ERROR":
+      return {
+        list: [],
+        isLoading: false,
+        isError: true
+      };
+
     case "DELETE_PRODUCT":
       return {
-        list: deleteProduct(),
+        ...state,
         isLoading: false,
         isError: false
       };
