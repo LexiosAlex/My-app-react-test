@@ -6,10 +6,6 @@ const categoriesReducer = (
   },
   action
 ) => {
-  const deleteCategory = id => {
-    return state.list.filter(category => category.categoryId !== id);
-  };
-
   switch (action.type) {
     case "ADD_CATEGORY":
       console.log(action.payload);
