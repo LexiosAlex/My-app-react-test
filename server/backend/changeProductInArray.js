@@ -4,7 +4,7 @@ const changeProductInArray = (reqBody, productsData) => {
       ? {
           categoryId: reqBody.categoryId,
           id: reqBody.id,
-          key: reqBody.key,
+          key: reqBody.id,
           name: reqBody.name,
           price: reqBody.price,
           wholePrice: reqBody.wholePrice

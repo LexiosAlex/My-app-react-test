@@ -61,6 +61,7 @@ class App extends React.Component {
               categories={categories.list}
               onChangeProduct={onChangeProduct}
               page={this.state.activePage}
+              activeCategory={this.state.activeCategoryId}
             />
           </Row>
         )

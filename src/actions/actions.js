@@ -61,23 +61,24 @@ export const changeProduct = (
   name,
   wholePrice,
   price,
+  activeCategory,
   page
 ) => dispatch => {
   dispatch({ type: "CHANGING_PRODUCT" });
   axios
     .put("/api/product/change", {
-      id: id,
-      categoryId: categoryId,
-      name: name,
-      wholePrice: wholePrice,
-      price: price
+      id,
+      categoryId,
+      name,
+      wholePrice,
+      price
     })
     .then(res => {
       console.log(res);
       dispatch({
         type: "CHANGE_PRODUCT"
       });
-      asyncGetProducts(categoryId, page);
+      dispatch(asyncGetProducts(activeCategory, page));
     })
     .catch(error => {
       dispatch({ type: "CHANGE_PRODUCT_ERROR", error });
