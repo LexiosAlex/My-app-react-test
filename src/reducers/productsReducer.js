@@ -32,10 +32,6 @@ const productsReducer = (
     );
   };
 
-  const deleteProduct = () => {
-    return state.list.filter(item => item.id !== action.id);
-  };
-
   switch (action.type) {
     case "ADDING_PRODUCT":
       return {
