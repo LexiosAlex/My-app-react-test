@@ -22,7 +22,7 @@ export const deleteProduct = (id, activeCategory, page) => dispatch => {
   dispatch({ type: "DELETING_PRODUCT" });
   axios
     .delete("/api/product/delete", {
-      id: id
+      params: { id }
     })
     .then(res => {
       console.log(res);
