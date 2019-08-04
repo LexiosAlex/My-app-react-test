@@ -8,8 +8,16 @@ import {
   carryDeletedCategoryProducts
 } from "./helpers/helpers.js";
 import bodyParser from "body-parser";
-import db from "../src/db/db.js";
+// import db from "../src/db/db.js";
 const server = express();
+const mongoose = require("mongoose");
+let dev_db_url =
+  "mongodb+srv://Agent070:1234567890@myapptestcluster-rhaak.mongodb.net/test?retryWrites=true&w=majority";
+let mongoDB = process.env.MONGODB_URI || dev_db_url;
+mongoose.connect(mongoDB);
+mongoose.Promise = global.Promise;
+let db = mongoose.connection;
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: false }));
