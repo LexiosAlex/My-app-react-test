@@ -7,6 +7,8 @@ import {
   deleteCategory,
   carryDeletedCategoryProducts
 } from "./helpers/helpers.js";
+
+// const product = require("./routes/product.route"); // Imports routes for the products
 import bodyParser from "body-parser";
 // import db from "../src/db/db.js";
 const server = express();
