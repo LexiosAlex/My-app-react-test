@@ -1,4 +1,5 @@
 import express from "express";
+import mongoose from "mongoose";
 import {
   queryStringProductsParser,
   getMax,
@@ -7,16 +8,19 @@ import {
   deleteCategory,
   carryDeletedCategoryProducts
 } from "./helpers/helpers.js";
+import dotenv from 'dotenv';
 
-// const product = require("./routes/product.route"); // Imports routes for the products
+// import product from "../routers/productRouter.js"; // Imports routes for the products
+import categoryModel from "../models/category.js"
+
 import bodyParser from "body-parser";
 // import db from "../src/db/db.js";
+dotenv.config();
 const server = express();
-const mongoose = require("mongoose");
-let dev_db_url =
-  "mongodb+srv://Agent070:1234567890@myapptestcluster-rhaak.mongodb.net/test?retryWrites=true&w=majority";
-let mongoDB = process.env.MONGODB_URI || dev_db_url;
-mongoose.connect(mongoDB);
+
+const devDbUrl = process.env.MONGOLAB_URI;
+
+mongoose.connect(devDbUrl, {dbName: "MyTestApp", useNewUrlParser: true});
 mongoose.Promise = global.Promise;
 let db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
@@ -34,10 +38,19 @@ server.get("/api/products", (req, res) => {
 });
 
 server.get("/api/categories", (req, res) => {
-  res.status(200).send({
-    success: "true",
-    message: "categories retrieved successfully",
-    categoriesData: db.categories
+  categoryModel.find({}, function (err, categories) {
+    if (err) {
+      res.send({
+        success: "false",
+        message: "cant get categories"
+      })
+    }
+    res.status(200).send({
+      success: "true",
+      message: "categories retrieved successfully",
+      categoriesData: categories
+    });
+
   });
 });
 
