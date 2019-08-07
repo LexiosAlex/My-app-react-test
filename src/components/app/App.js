@@ -127,7 +127,7 @@ class App extends React.Component {
               ) : (
                 categories.list.map((it, i) => (
                   <Category
-                    key={`city-${i}`}
+                    key={`category-${i}`}
                     category={it}
                     changeCategory={this.onChangeCategory}
                     onDeleteCategory={onDeleteCategory}

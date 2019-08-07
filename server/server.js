@@ -35,6 +35,7 @@ server.get("/api/products", (req, res) => {
   ProductModel.find({ categoryId: req.query.categoryId })
     .limit(req.query.page * PRODUCTS_PER_PAGE)
     .exec((err, products) => {
+      console.log(products);
       if (err) {
         res.send({
           success: "false",
