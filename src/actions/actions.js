@@ -40,7 +40,8 @@ export const addProduct = (
   name,
   wholePrice,
   price,
-  activeCategoryId
+  activeCategoryId,
+  page
 ) => dispatch => {
   dispatch({ type: "ADDING_PRODUCT" });
   axios
@@ -56,6 +57,7 @@ export const addProduct = (
         type: "ADD_PRODUCT",
         payload: activeCategoryId === categoryId && res.data.product
       });
+      dispatch(asyncGetProducts(activeCategoryId, page))
     })
     .catch(error => {
       dispatch({ type: "ADD_PRODUCT_ERROR", error });

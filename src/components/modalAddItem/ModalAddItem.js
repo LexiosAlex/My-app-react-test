@@ -14,7 +14,7 @@ class ModalAddItem extends React.Component {
   };
 
   saveProduct = () => {
-    const { hideModal, onAddProduct, activeCategoryId } = this.props;
+    const { hideModal, onAddProduct, activeCategoryId, activePage } = this.props;
     if (
       this.state.inputValueCategory > -1 &&
       this.state.inputValueName.length > 0 &&
@@ -26,7 +26,8 @@ class ModalAddItem extends React.Component {
         this.state.inputValueName,
         this.state.inputValueWholePrice,
         this.state.inputValuePrice,
-        activeCategoryId
+        activeCategoryId,
+        activePage
       );
     }
 

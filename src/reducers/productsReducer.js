@@ -23,9 +23,9 @@ const productsReducer = (
 
     case "ADD_PRODUCT":
       return {
+        ...state,
         isLoading: false,
         isError: false,
-        list: [...state.list, action.payload]
       };
 
     case "DELETING_PRODUCT":
