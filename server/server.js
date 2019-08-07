@@ -236,23 +236,34 @@ server.put("/api/product/change", (req, res) => {
     });
 });
 
-// server.delete("/api/product/delete", (req, res) => {
-//   console.log(req.query);
-//   if (!req.query.id) {
-//     return res.status(400).send({
-//       success: "false",
-//       message: "id of product is required"
-//     });
-//   }
-//
-//   db.productsData = deleteProduct(req.query.id, db.productsData);
-//
-//   return res.status(201).send({
-//     success: "true",
-//     message: "product deleted successful"
-//   });
-// });
-//
+server.delete("/api/product/delete", (req, res) => {
+  console.log(req.query);
+  if (!req.query.id) {
+    return res.status(400).send({
+      success: "false",
+      message: "id of product is required"
+    });
+  }
+  
+  ProductModel.deleteOne({ id: req.query.id })
+    .exec()
+    .then(result => {
+      console.log(result);
+      return res.status(201).send({
+        success: "true",
+        message: "product deleted successful"
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      return res.status(500).send({
+        success: "false",
+        message: err
+      });
+    });
+
+});
+
 server.delete("/api/category/delete", (req, res) => {
   console.log(req.query);
   if (!req.query.categoryId) {
