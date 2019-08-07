@@ -106,6 +106,7 @@ const productsReducer = (
       };
 
     case "FETCH_PRODUCTS":
+      console.log(action.payload);
       return {
         list: action.payload,
         isLoading: false,

@@ -43,7 +43,7 @@ server.get("/api/products", (req, res) => {
     res.status(200).send({
       success: "true",
       message: "categories retrieved successfully",
-      categoriesData: products
+      productsData: products
     });
   });
 });
@@ -88,14 +88,6 @@ server.post("/api/products/create", (req, res) => {
       message: "price is required"
     });
   }
-  // const product = {
-  //   id: getMax(db.productsData, "id") + 1,
-  //   key: getMax(db.productsData, "id") + 1,
-  //   categoryId: req.body.categoryId,
-  //   name: req.body.name,
-  //   wholePrice: req.body.wholePrice,
-  //   price: req.body.price
-  // };
 
   ProductModel.find({}).sort({id : -1}).limit(1).exec( (err, maxValueItem) =>{
     if (err) {
@@ -132,13 +124,6 @@ server.post("/api/products/create", (req, res) => {
         });
     }
   });
-
-  // db.productsData.push(product);
-  // return res.status(201).send({
-  //   success: "true",
-  //   message: "product added successful",
-  //   product
-  // });
 });
 
 server.post("/api/categories/create", (req, res) => {
@@ -182,44 +167,60 @@ server.post("/api/categories/create", (req, res) => {
   });
 
 });
-//
-// server.put("/api/product/change", (req, res) => {
-//   console.log(req.body);
-//   if (!req.body.id) {
-//     return res.status(400).send({
-//       success: "false",
-//       message: "id of product is required"
-//     });
-//   } else if (!req.body.categoryId) {
-//     return res.status(400).send({
-//       success: "false",
-//       message: "id of category is required"
-//     });
-//   } else if (!req.body.name) {
-//     return res.status(400).send({
-//       success: "false",
-//       message: "name is required"
-//     });
-//   } else if (!req.body.wholePrice) {
-//     return res.status(400).send({
-//       success: "false",
-//       message: "wholePrice is required"
-//     });
-//   } else if (!req.body.price) {
-//     return res.status(400).send({
-//       success: "false",
-//       message: "price is required"
-//     });
-//   }
-//
-//   db.productsData = changeProductInArray(req.body, db.productsData);
-//
-//   return res.status(201).send({
-//     success: "true",
-//     message: "product changed successful"
-//   });
-// });
-//
+
+server.put("/api/product/change", (req, res) => {
+  console.log(req.body);
+  if (!req.body.id) {
+    return res.status(400).send({
+      success: "false",
+      message: "id of product is required"
+    });
+  } else if (!req.body.categoryId) {
+    return res.status(400).send({
+      success: "false",
+      message: "id of category is required"
+    });
+  } else if (!req.body.name) {
+    return res.status(400).send({
+      success: "false",
+      message: "name is required"
+    });
+  } else if (!req.body.wholePrice) {
+    return res.status(400).send({
+      success: "false",
+      message: "wholePrice is required"
+    });
+  } else if (!req.body.price) {
+    return res.status(400).send({
+      success: "false",
+      message: "price is required"
+    });
+  }
+
+  ProductModel.update({id: req.body.id},{$set:
+    {
+      categoryId: req.body.categoryId,
+      id: req.body.id,
+      key: req.body.id,
+      name: req.body.name,
+      price: req.body.price,
+      wholePrice: req.body.wholePrice
+    }
+  }).then(result => {
+    console.log(result);
+    return res.status(201).send({
+      success: "true",
+      message: "product changed successful"
+    });
+  }).catch((err) => {
+    console.log(err);
+    return res.status(500).send({
+      success: "false",
+      message: err
+    });
+  });
+});
+
 // server.delete("/api/product/delete", (req, res) => {
 //   console.log(req.query);
 //   if (!req.query.id) {
