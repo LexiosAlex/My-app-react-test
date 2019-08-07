@@ -9,4 +9,4 @@ let categorySchema = new Schema({
 });
 
 // Export the model
-export default mongoose.model("Categories", categorySchema);
+export default mongoose.model("categories", categorySchema);
