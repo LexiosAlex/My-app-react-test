@@ -207,7 +207,7 @@ server.put("/api/product/change", (req, res) => {
     });
   }
 
-  ProductModel.update(
+  ProductModel.findOneAndUpdate(
     { id: req.body.id },
     {
       $set: {
@@ -218,8 +218,9 @@ server.put("/api/product/change", (req, res) => {
         price: req.body.price,
         wholePrice: req.body.wholePrice
       }
-    }
-  )
+    },
+  { new: true }
+).exec()
     .then(result => {
       console.log(result);
       return res.status(201).send({
@@ -244,7 +245,7 @@ server.delete("/api/product/delete", (req, res) => {
       message: "id of product is required"
     });
   }
-  
+
   ProductModel.deleteOne({ id: req.query.id })
     .exec()
     .then(result => {
@@ -273,7 +274,7 @@ server.delete("/api/category/delete", (req, res) => {
     });
   }
 
-  CategoryModel.deleteOne({ id: req.query.categoryId })
+  CategoryModel.deleteOne({ categoryId: req.query.categoryId })
     .exec()
     .then(result => {
       console.log(result);
