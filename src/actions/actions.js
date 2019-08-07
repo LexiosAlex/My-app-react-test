@@ -10,10 +10,7 @@ export const addCategory = name => dispatch => {
     })
     .then(res => {
       console.log(res);
-      dispatch({
-        type: "ADD_CATEGORY",
-        payload: res.data.categories
-      });
+      dispatch(asyncGetCategories());
     })
     .catch(error => {
       dispatch({ type: "ADD_CATEGORY_ERROR", error });

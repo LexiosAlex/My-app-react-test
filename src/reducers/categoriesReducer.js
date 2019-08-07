@@ -10,7 +10,7 @@ const categoriesReducer = (
     case "ADD_CATEGORY":
       console.log(action.payload);
       return {
-        list: action.payload,
+        ...state,
         isLoading: false,
         isError: false
       };
