@@ -10,13 +10,12 @@ import {
 } from "./helpers/helpers.js";
 import dotenv from "dotenv";
 
-// import product from "../routers/productRouter.js"; // Imports routes for the products
 import CategoryModel from "../models/category.js";
 import ProductModel from "../models/product.js";
 import bodyParser from "body-parser";
 
 const PRODUCTS_PER_PAGE = 10;
-// import db from "../src/db/db.js";
+
 dotenv.config();
 const server = express();
 

@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
 
 let ProductSchema = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  key: { type: Number, required: true },
   id: { type: Number, required: true },
   name: { type: String, required: true, max: 100 },
   wholePrice: { type: Number, required: true },
