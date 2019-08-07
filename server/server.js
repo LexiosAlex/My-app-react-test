@@ -12,8 +12,10 @@ import dotenv from 'dotenv';
 
 // import product from "../routers/productRouter.js"; // Imports routes for the products
 import CategoryModel from "../models/category.js"
-
+import ProductModel from "../models/product.js"
 import bodyParser from "body-parser";
+
+const PRODUCTS_PER_PAGE = 10;
 // import db from "../src/db/db.js";
 dotenv.config();
 const server = express();
@@ -28,14 +30,23 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: false }));
 
-// server.get("/api/products", (req, res) => {
-//   console.log(req.query);
-//   res.status(200).send({
-//     success: "true",
-//     message: "productsData retrieved successfully",
-//     productsData: queryStringProductsParser(req.query, db.productsData)
-//   });
-// });
+server.get("/api/products", (req, res) => {
+  console.log(req.query);
+  ProductModel.find({categoryId: req.query.categoryId}).limit(req.query.page * PRODUCTS_PER_PAGE).exec((err, products) => {
+    if (err) {
+      res.send({
+        success: "false",
+        message: "cant get products"
+      })
+    }
+
+    res.status(200).send({
+      success: "true",
+      message: "categories retrieved successfully",
+      categoriesData: products
+    });
+  });
+});
 
 server.get("/api/categories", (req, res) => {
   CategoryModel.find({}, function (err, categories) {
@@ -54,46 +65,46 @@ server.get("/api/categories", (req, res) => {
   });
 });
 
-// server.post("/api/products/create", (req, res) => {
-//   console.log(req.body);
-//   if (!req.body.categoryId) {
-//     return res.status(400).send({
-//       success: "false",
-//       message: "category is required"
-//     });
-//   } else if (!req.body.name) {
-//     return res.status(400).send({
-//       success: "false",
-//       message: "name is required"
-//     });
-//   } else if (!req.body.wholePrice) {
-//     return res.status(400).send({
-//       success: "false",
-//       message: "wholePrice is required"
-//     });
-//   } else if (!req.body.price) {
-//     return res.status(400).send({
-//       success: "false",
-//       message: "price is required"
-//     });
-//   }
-//   const product = {
-//     id: getMax(db.productsData, "id") + 1,
-//     key: getMax(db.productsData, "id") + 1,
-//     categoryId: req.body.categoryId,
-//     name: req.body.name,
-//     wholePrice: req.body.wholePrice,
-//     price: req.body.price
-//   };
-//
-//   db.productsData.push(product);
-//   return res.status(201).send({
-//     success: "true",
-//     message: "product added successful",
-//     product
-//   });
-// });
-//
+server.post("/api/products/create", (req, res) => {
+  console.log(req.body);
+  if (!req.body.categoryId) {
+    return res.status(400).send({
+      success: "false",
+      message: "category is required"
+    });
+  } else if (!req.body.name) {
+    return res.status(400).send({
+      success: "false",
+      message: "name is required"
+    });
+  } else if (!req.body.wholePrice) {
+    return res.status(400).send({
+      success: "false",
+      message: "wholePrice is required"
+    });
+  } else if (!req.body.price) {
+    return res.status(400).send({
+      success: "false",
+      message: "price is required"
+    });
+  }
+  const product = {
+    id: getMax(db.productsData, "id") + 1,
+    key: getMax(db.productsData, "id") + 1,
+    categoryId: req.body.categoryId,
+    name: req.body.name,
+    wholePrice: req.body.wholePrice,
+    price: req.body.price
+  };
+
+  db.productsData.push(product);
+  return res.status(201).send({
+    success: "true",
+    message: "product added successful",
+    product
+  });
+});
+
 server.post("/api/categories/create", (req, res) => {
   console.log(req.body);
   if (!req.body.categoryName) {

@@ -1,4 +1,7 @@
-const filterActiveCategoryItems = (categoryId, items) =>
-  items.filter(it => it.categoryId === categoryId);
+const filterActiveCategoryItems = (categoryId, items) => {
+  return items ? items.filter(it => it.categoryId === categoryId) : []
+};
+
+
 
 export default filterActiveCategoryItems;
