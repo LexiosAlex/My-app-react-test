@@ -15,6 +15,7 @@ import ProductModel from "../models/product.js";
 import bodyParser from "body-parser";
 
 const PRODUCTS_PER_PAGE = 10;
+const WITHOUT_CATEGORY_ID = 0;
 
 dotenv.config();
 const server = express();
@@ -219,8 +220,9 @@ server.put("/api/product/change", (req, res) => {
         wholePrice: req.body.wholePrice
       }
     },
-  { new: true }
-).exec()
+    { new: true }
+  )
+    .exec()
     .then(result => {
       console.log(result);
       return res.status(201).send({
@@ -262,7 +264,6 @@ server.delete("/api/product/delete", (req, res) => {
         message: err
       });
     });
-
 });
 
 server.delete("/api/category/delete", (req, res) => {
@@ -274,6 +275,16 @@ server.delete("/api/category/delete", (req, res) => {
     });
   }
 
+  ProductModel.updateMany(
+    { categoryId: req.query.categoryId },
+    { $set: { categoryId: WITHOUT_CATEGORY_ID } }
+  ).exec().catch(err => {
+    console.log(err);
+    return res.status(500).send({
+      success: "false",
+      message: err
+    });
+  });
   CategoryModel.deleteOne({ categoryId: req.query.categoryId })
     .exec()
     .then(result => {
@@ -291,7 +302,7 @@ server.delete("/api/category/delete", (req, res) => {
       });
     });
 });
-//
+
 const PORT = 5000;
 
 server.listen(PORT, () => {
