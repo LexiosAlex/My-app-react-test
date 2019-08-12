@@ -1,7 +1,10 @@
 import express from "express";
-import productController from "../controllers/productContreller.js";
-const router = express.Router();
-// a simple test url to check that all of our files are communicating correctly.
-router.get("/test", productController.test);
+import {getProducts, createProduct, changeProduct, deleteProduct} from "../controllers/productContreller.js";
 
-export default {router}
+const router = express.Router();
+router.get("/api/products", getProducts);
+router.post("/api/products/create", createProduct);
+router.put("/api/product/change", changeProduct);
+router.delete("/api/product/delete", deleteProduct);
+
+export default router

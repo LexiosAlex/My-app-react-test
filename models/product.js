@@ -13,6 +13,5 @@ let ProductSchema = new Schema({
   categoryId: { type: Number, required: true }
 });
 
-// Export the model
 // ProductSchema.plugin(autoIncrement.plugin, { model: 'Product', field: 'id', startAt: 1, incrementBy: 1 });
 export default mongoose.model("Product", ProductSchema);
