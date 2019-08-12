@@ -3,8 +3,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 
-import productRouter from "../routers/productRouter.js"
-import categoriesRouter from "../routers/categoriesRouter.js"
+import productRouter from "./routers/productRouter.js"
+import categoriesRouter from "./routers/categoriesRouter.js"
 
 dotenv.config();
 const server = express();

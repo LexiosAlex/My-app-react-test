@@ -1,4 +1,4 @@
-import ProductModel from "../models/product";
+import ProductModel from "../models/product.js";
 import mongoose from "mongoose";
 const PRODUCTS_PER_PAGE = 10;
 

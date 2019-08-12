@@ -1,5 +1,5 @@
-import CategoryModel from "../models/category";
-import ProductModel from "../models/product";
+import CategoryModel from "../models/category.js";
+import ProductModel from "../models/product.js";
 import mongoose from "mongoose";
 
 const WITHOUT_CATEGORY_ID = 0;
