@@ -68,7 +68,7 @@ export const deleteCategory = (id, activeCategory, page) => dispatch => {
   dispatch({ type: "DELETING_CATEGORY" });
   axios
     .delete("/api/category/delete", {
-      params: { categoryId: id }
+      params: { id: id }
     })
     .then(res => {
       console.log(res);
