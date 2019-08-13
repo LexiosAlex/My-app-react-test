@@ -1,4 +1,5 @@
 import ProductModel from "../models/product.js";
+import db from "../server.js"
 import mongoose from "mongoose";
 const PRODUCTS_PER_PAGE = 10;
 
@@ -67,9 +68,8 @@ export const createProduct = (req, res) => {
       price: req.body.price
     });
 
-    product
+  db.model("Product", product)
       .save()
-      .nextCount()
       .then(result => {
         console.log(result);
         return res.status(201).send({
