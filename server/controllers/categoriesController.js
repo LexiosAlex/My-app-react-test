@@ -12,10 +12,11 @@ export const getCategories = (req, res) => {
         message: "cant get categories"
       });
     }
+
     res.status(200).send({
       success: "true",
       message: "categories retrieved successfully",
-      categoriesData: categories
+      categoriesData: categories.map(category => ({categoryName: category.categoryName, id: category._id})),
     });
   });
 };
@@ -29,20 +30,18 @@ export const createCategory = (req, res) => {
     });
   }
 
-  CategoryModel.find({})
-    .sort({ categoryId: -1 })
-    .limit(1)
-    .exec((err, maxValueItem) => {
-      if (err) {
-        console.log(err);
-        return res.status(400).send({
-          success: "false",
-          message: "something went wrong"
-        });
-      } else {
+  // CategoryModel.find({})
+  //   .sort({ categoryId: -1 })
+  //   .limit(1)
+  //   .exec((err, maxValueItem) => {
+  //     if (err) {
+  //       console.log(err);
+  //       return res.status(400).send({
+  //         success: "false",
+  //         message: "something went wrong"
+  //       });
+  //     } else {
         const category = new CategoryModel({
-          _id: new mongoose.Types.ObjectId(),
-          categoryId: maxValueItem[0].categoryId + 1,
           categoryName: req.body.categoryName
         });
 
@@ -62,8 +61,8 @@ export const createCategory = (req, res) => {
               message: "something went wrong"
             });
           });
-      }
-    });
+//       }
+//     });
 };
 
 export const deleteCategory = (req, res) => {

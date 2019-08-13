@@ -15,17 +15,17 @@ class Category extends React.Component {
 
     return (
       <Row className="category">
-        {category.categoryTitle !== "noCategory" && (
+        {category.id !== 0 && (
           <ModalDeleteCategory
             onDeleteCategory={onDeleteCategory}
-            id={category.categoryId}
+            id={category.id}
             activeCategory={activeCategory}
             page={page}
           />
         )}
         <Button
           className={
-            category.categoryTitle === "noCategory"
+            category.id === 0
               ? "category__main-btn category__main-btn--no-category"
               : "category__main-btn"
           }

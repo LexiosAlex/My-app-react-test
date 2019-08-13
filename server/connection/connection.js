@@ -5,6 +5,7 @@ dotenv.config();
 const devDbUrl = process.env.MONGOLAB_URI;
 
 mongoose.connect(devDbUrl, { dbName: "testshop", useNewUrlParser: true });
+mongoose.set('useCreateIndex', true);
 mongoose.Promise = global.Promise;
 export const connection = mongoose.connection;
 

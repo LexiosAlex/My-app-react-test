@@ -18,16 +18,15 @@ import {connection} from "../connection/connection";
 const Schema = mongoose.Schema;
 
 let categorySchema = new Schema({
-  _id: mongoose.Schema.Types.ObjectId,
-  categoryId: { type: Number, required: true },
+  _id: { type: Number, unique: true, required: true },
   categoryName: { type: String, required: true, max: 100 },
 });
 
 autoIncrement.initialize(connection);
 categorySchema.plugin(autoIncrement.plugin, {
   model: "categories",
-  field: "categoryId",
-  startAt: 1,
+  field: "_id",
+  startAt: 0,
   incrementBy: 1
 });
 
