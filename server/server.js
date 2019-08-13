@@ -1,8 +1,7 @@
 import express from "express";
-import mongoose from "mongoose";
 import bodyParser from "body-parser";
 
-import {connection} from "./connection/connection.js";
+import "./connection/connection.js";
 import productRouter from "./routers/productRouter.js"
 import categoriesRouter from "./routers/categoriesRouter.js"
 

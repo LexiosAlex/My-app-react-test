@@ -4,7 +4,7 @@ dotenv.config();
 
 const devDbUrl = process.env.MONGOLAB_URI;
 
-mongoose.createConnection(devDbUrl, { dbName: "testshop", useNewUrlParser: true });
+mongoose.connect(devDbUrl, { dbName: "testshop", useNewUrlParser: true });
 mongoose.Promise = global.Promise;
 export const connection = mongoose.connection;
 
