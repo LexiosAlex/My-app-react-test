@@ -57,7 +57,7 @@ export const addProduct = (
         type: "ADD_PRODUCT",
         payload: activeCategoryId === categoryId && res.data.product
       });
-      dispatch(asyncGetProducts(activeCategoryId, page))
+      dispatch(asyncGetProducts(activeCategoryId, page));
     })
     .catch(error => {
       dispatch({ type: "ADD_PRODUCT_ERROR", error });
@@ -123,7 +123,13 @@ export const asyncGetCategories = () => dispatch => {
     .get(`/api/categories`)
     .then(res => {
       console.log(res);
-      dispatch({ type: "FETCH_CATEGORIES", payload: res.data.categoriesData });
+      dispatch({
+        type: "FETCH_CATEGORIES",
+        payload: res.data.categoriesData.map(category => ({
+          ...category,
+          id: category._id
+        }))
+      });
     })
     .catch(error => {
       dispatch({ type: "FETCH_CATEGORIES_ERROR", error });
@@ -138,7 +144,11 @@ export const asyncGetProducts = (categoryId, page) => dispatch => {
     })
     .then(res => {
       console.log(res);
-      dispatch({ type: "FETCH_PRODUCTS", payload: res.data.productsData });
+      dispatch({ type: "FETCH_PRODUCTS", payload: res.data.productsData.map(product => ({
+          ...product,
+          id: product._id
+        }))
+      });
     })
     .catch(error => {
       dispatch({ type: "FETCH_PRODUCTS_ERROR", error });

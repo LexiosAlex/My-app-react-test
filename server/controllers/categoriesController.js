@@ -15,10 +15,7 @@ export const getCategories = (req, res) => {
     res.status(200).send({
       success: "true",
       message: "categories retrieved successfully",
-      categoriesData: categories.map(category => ({
-        categoryName: category.categoryName,
-        id: category._id
-      }))
+      categoriesData: categories,
     });
   });
 };
@@ -64,8 +61,8 @@ export const deleteCategory = (req, res) => {
   }
 
   ProductModel.updateMany(
-    { categoryId: req.query.categoryId },
-    { $set: { categoryId: WITHOUT_CATEGORY_ID } }
+    { categoryId: req.query.id },
+    { $set: { categoryId: WITHOUT_CATEGORY_ID } },
   )
     .exec()
     .catch(err => {

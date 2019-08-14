@@ -32,7 +32,6 @@ class ModalAddItem extends React.Component {
     }
 
     this.setState({
-      inputValueCategory: "",
       inputValueName: "",
       inputValueWholePrice: "",
       inputValuePrice: ""
@@ -80,7 +79,7 @@ class ModalAddItem extends React.Component {
               }
             >
               {categories.map((it, i) => (
-                <Option key={`option-${i}`} value={it.categoryId}>
+                <Option key={`option-${i}`} value={it.id}>
                   {it.categoryName}
                 </Option>
               ))}

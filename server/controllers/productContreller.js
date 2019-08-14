@@ -1,6 +1,5 @@
 import ProductModel from "../models/product.js";
-import db from "../server.js"
-import mongoose from "mongoose";
+
 const PRODUCTS_PER_PAGE = 10;
 
 export const getProducts = (req, res) => {
@@ -48,48 +47,36 @@ export const createProduct = (req, res) => {
     });
   }
 
-  // ProductModel.find({})
-  //   .sort({ id: -1 })
-  //   .limit(1)
-  //   .exec((err, maxValueItem) => {
-  // if (err) {
-  //   console.log(err);
-  //   return res.status(400).send({
-  //     success: "false",
-  //     message: "something went wrong"
-  //   });
-  // } else {
-    const product = new ProductModel({
-      _id: new mongoose.Types.ObjectId(),
-      // id: maxValueItem[0].id + 1,
-      categoryId: req.body.categoryId,
-      name: req.body.name,
-      wholePrice: req.body.wholePrice,
-      price: req.body.price
-    });
+  const product = new ProductModel({
+    categoryId: req.body.categoryId,
+    name: req.body.name,
+    wholePrice: req.body.wholePrice,
+    price: req.body.price
+  });
 
-  db.model("Product", product)
-      .save()
-      .then(result => {
-        console.log(result);
-        return res.status(201).send({
-          success: "true",
-          message: "products added successful",
-          product
-        });
-      })
-      .catch(err => {
-        console.log(err);
-        return res.status(400).send({
-          success: "false",
-          message: "something went wrong"
-        });
+  product
+    .save()
+    .then(result => {
+      console.log(result);
+      return res.status(201).send({
+        success: "true",
+        message: "products added successful",
+        product
       });
-    //   }
-    // });
+    })
+    .catch(err => {
+      console.log(err);
+      return res.status(400).send({
+        success: "false",
+        message: "something went wrong"
+      });
+    });
 };
 export const changeProduct = (req, res) => {
   console.log(req.body);
+  console.log(req.body.categoryId);
+
+
   if (!req.body.id) {
     return res.status(400).send({
       success: "false",
@@ -118,17 +105,17 @@ export const changeProduct = (req, res) => {
   }
 
   ProductModel.findOneAndUpdate(
-    { id: req.body.id },
+    { _id: req.body.id },
     {
       $set: {
+        _id: req.body.id,
         categoryId: req.body.categoryId,
-        id: req.body.id,
         name: req.body.name,
         price: req.body.price,
         wholePrice: req.body.wholePrice
       }
     },
-    { new: true }
+    { new: true },
   )
     .exec()
     .then(result => {
@@ -156,7 +143,7 @@ export const deleteProduct = (req, res) => {
     });
   }
 
-  ProductModel.deleteOne({ id: req.query.id })
+  ProductModel.deleteOne({ _id: req.query.id })
     .exec()
     .then(result => {
       console.log(result);

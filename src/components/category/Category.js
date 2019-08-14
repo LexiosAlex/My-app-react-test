@@ -31,7 +31,7 @@ class Category extends React.Component {
           }
           type="link"
           onClick={() => {
-            changeCategory(category.categoryId);
+            changeCategory(category.id);
           }}
         >
           {category.categoryName}
