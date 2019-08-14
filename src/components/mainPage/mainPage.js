@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./mainPage.css";
 import { Layout, Row, Col, Button, Table, Spin } from "antd";
 import filterActiveCategoryItems from "../../filterActiveCategoryItems.js";
 import Category from "../category/Category.js";
@@ -11,7 +11,7 @@ import ModalDeleteItem from "../modalDeleteItem/ModalDeleteItem.js";
 const ButtonGroup = Button.Group;
 const { Header, Footer, Content, Sider } = Layout;
 
-class App extends React.Component {
+class MainPage extends React.Component {
   state = {
     activeCategoryId: 1,
     activePage: 1
@@ -159,4 +159,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default MainPage;

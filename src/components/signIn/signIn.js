@@ -1,13 +1,52 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
-import './index.css';
+import {BrowserRouter, Route, Link} from "react-router-dom";
+import axios from 'axios';
 import { Form, Icon, Input, Button } from 'antd';
 
-class NormalLoginForm extends React.Component {
+class loginForm extends React.Component {
+  state = {
+    username: '',
+    password: '',
+    redirectTo: null
+  };
+
+  // handleSubmit(event) {
+  //   event.preventDefault();
+  //   console.log('handleSubmit');
+  //
+  //   axios
+  //     .post('/user/login', {
+  //       username: this.state.username,
+  //       password: this.state.password
+  //     })
+  //     .then(response => {
+  //       console.log('login response: ');
+  //       console.log(response);
+  //       if (response.status === 200) {
+  //         // update mainPage.jsge.js state
+  //         this.props.updateUser({
+  //           loggedIn: true,
+  //           username: response.data.username
+  //         });
+  //         // update the state to redirect to home
+  //         this.setState({
+  //           redirectTo: '/'
+  //         })
+  //       }
+  //     }).catch(error => {
+  //     console.log('login error: ');
+  //     console.log(error);
+  //
+  //   })
+  // }
+
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
+      console.log(values);
       if (!err) {
         console.log('Received values of form: ', values);
       }
@@ -49,6 +88,4 @@ class NormalLoginForm extends React.Component {
   }
 }
 
-const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(NormalLoginForm);
-
-ReactDOM.render(<WrappedNormalLoginForm />, document.getElementById('container'));
+export default Form.create({ name: 'login' })(loginForm);

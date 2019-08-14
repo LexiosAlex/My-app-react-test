@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import App from "../components/app/App.js";
+import MainPage from "../components/mainPage/mainPage.js";
 import {
   addCategory,
   deleteCategory,
@@ -68,4 +68,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(App);
+)(MainPage);
