@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route} from 'react-router-dom'
-import mainPage from "./components/mainPage/mainPage.js"
+import MainPage from "./containers/categoryItems.js"
 import signIn from "./components/signIn/signIn.js"
 
 class App extends Component {
@@ -14,12 +14,16 @@ class App extends Component {
         <Switch>
           <Route>
             <Route
-              exact path="/login"
+              path="/login"
               component={signIn}
             />
             <Route
               exact path="/"
-              component={mainPage} />
+              render={() =>
+                <MainPage
+                  loginStatus={this.state.loggedIn}
+                />}
+              />
           </Route>
         </Switch>
       </BrowserRouter>

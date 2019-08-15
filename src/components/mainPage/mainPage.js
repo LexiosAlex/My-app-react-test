@@ -1,6 +1,7 @@
 import React from "react";
 import "./mainPage.css";
 import { Layout, Row, Col, Button, Table, Spin } from "antd";
+import {Redirect} from "react-router-dom";
 import filterActiveCategoryItems from "../../filterActiveCategoryItems.js";
 import Category from "../category/Category.js";
 import ModalAddCategory from "../modalAddCategory/ModalAddCategory.js";
@@ -84,10 +85,16 @@ class MainPage extends React.Component {
       productsData,
       onAddCategory,
       onDeleteCategory,
-      onAddProduct
+      onAddProduct,
+      loginStatus
     } = this.props;
 
+    if (!loginStatus) {
+      return <Redirect push to="/login"/>
+    }
+
     return (
+
       <div className="App">
         <Layout>
           <Header style={{ height: "auto" }} className="main-header">
