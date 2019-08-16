@@ -3,15 +3,11 @@ import "antd/dist/antd.css";
 import "./signIn.css";
 import axios from "axios";
 import { Form, Icon, Input, Button } from "antd";
+import { withRouter } from "react-router";
 
 class loginForm extends React.Component {
-  state = {
-    username: "",
-    password: "",
-    redirectTo: null
-  };
-
   handleSubmit = e => {
+    const {onChangeLoginStatus} = this.props;
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       console.log(values);
@@ -26,6 +22,8 @@ class loginForm extends React.Component {
         .then(response => {
           console.log("login response: ");
           console.log(response);
+          onChangeLoginStatus(true);
+          this.props.history.push("/");
         })
         .catch(error => {
           console.log("login error: ");
@@ -73,4 +71,4 @@ class loginForm extends React.Component {
   }
 }
 
-export default Form.create({ name: "login" })(loginForm);
+export default withRouter(Form.create({ name: "login" })(loginForm));

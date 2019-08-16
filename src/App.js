@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route} from 'react-router-dom'
 import MainPage from "./containers/categoryItems.js"
-import signIn from "./components/signIn/signIn.js"
+import SignIn from "./components/signIn/signIn.js"
 
 class App extends Component {
   state = {
     loggedIn: false,
     username: null
   };
+
+  onChangeLoginStatus = (isLogined) => {
+    this.setState({
+      loggedIn: isLogined
+    })
+  };
+
+
   render() {
     return (
       <BrowserRouter>
@@ -15,15 +23,19 @@ class App extends Component {
           <Route>
             <Route
               path="/login"
-              component={signIn}
+              render={() => <SignIn
+                onChangeLoginStatus = {this.onChangeLoginStatus}
+              />}
             />
             <Route
               exact path="/"
               render={() =>
                 <MainPage
+                  onChangeLoginStatus = {this.onChangeLoginStatus}
                   loginStatus={this.state.loggedIn}
                 />}
               />
+            />
           </Route>
         </Switch>
       </BrowserRouter>
