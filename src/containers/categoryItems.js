@@ -8,16 +8,25 @@ import {
   changeProduct,
   asyncGetCategories,
   asyncGetProducts
-} from "../actions/actions.js";
+} from "../actions/dashboardActions.js";
+
+import {
+  onUnLogin
+} from "../actions/userActions.js"
 
 const mapStateToProps = state => {
   return {
     categories: state.categoriesReducer,
-    productsData: state.productsReducer
+    productsData: state.productsReducer,
+    loginData: state.userReducer,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
+  onUnLogin: () => {
+    dispatch(onUnLogin());
+  },
+
   onGetCategories: () => {
     dispatch(asyncGetCategories());
   },

@@ -86,11 +86,11 @@ class MainPage extends React.Component {
       onAddCategory,
       onDeleteCategory,
       onAddProduct,
-      loginStatus,
-      onChangeLoginStatus
+      loginData,
+      onUnLogin
     } = this.props;
 
-    if (!loginStatus) {
+    if (!loginData.loggedIn) {
       return <Redirect push to="/login" />;
     }
 
@@ -126,7 +126,7 @@ class MainPage extends React.Component {
                     className="button-header"
                     type="primary"
                     onClick={() => {
-                      onChangeLoginStatus(false);
+                      onUnLogin();
                     }}
                   >
                     Выйти

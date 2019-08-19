@@ -1,39 +1,31 @@
 import React from "react";
 import "antd/dist/antd.css";
 import "./signIn.css";
-import axios from "axios";
 import { Form, Icon, Input, Button } from "antd";
-import { withRouter } from "react-router";
+import {Redirect, withRouter} from "react-router";
 
 class loginForm extends React.Component {
   handleSubmit = e => {
-    const {onChangeLoginStatus} = this.props;
+    const {onAdminLogin} = this.props;
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       console.log(values);
       if (err) {
         console.log(err);
       }
-      axios
-        .post("/login/user", {
-          userName: values.username,
-          password: values.password
-        })
-        .then(response => {
-          console.log("login response: ");
-          console.log(response);
-          onChangeLoginStatus(true);
-          this.props.history.push("/");
-        })
-        .catch(error => {
-          console.log("login error: ");
-          console.log(error);
-        });
+      onAdminLogin(values.username, values.password)
     });
   };
 
   render() {
-    const { getFieldDecorator } = this.props.form;
+    const {loginData} = this.props;
+    const { getFieldDecorator} = this.props.form;
+
+    if (loginData.loggedIn) {
+      console.log("выполн");
+      return <Redirect push to="/" />;
+    }
+
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
         <Form.Item>
