@@ -1,19 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route} from 'react-router-dom'
-import MainPage from "./containers/categoryItems.js"
+import DashBoard from "./containers/categoryItems.js"
 import SignIn from "./containers/singIn.js"
+import LandingPage from "./components/landingPage/LandingPage.js"
 
 class App extends Component {
-  // state = {
-  //   loggedIn: false,
-  // };
-  //
-  // onChangeLoginStatus = (isLogined) => {
-  //   this.setState({
-  //     loggedIn: isLogined
-  //   })
-  // };
-
 
   render() {
     return (
@@ -21,12 +12,16 @@ class App extends Component {
         <Switch>
           <Route>
             <Route
+            exact path="/"
+            render={() => <LandingPage/>}
+            />
+            <Route
               path="/login"
               render={() => <SignIn/>}
             />
             <Route
-              exact path="/"
-              render={() => <MainPage/>}
+              path="/dashboard"
+              render={() => <DashBoard/>}
               />
           </Route>
         </Switch>

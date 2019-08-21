@@ -1,5 +1,5 @@
 import React from "react";
-import "./mainPage.css";
+import "./DashBoard.css";
 import { Layout, Row, Col, Button, Table, Spin } from "antd";
 import { Redirect } from "react-router-dom";
 import filterActiveCategoryItems from "../../filterActiveCategoryItems.js";
@@ -12,7 +12,7 @@ import ModalDeleteItem from "../modalDeleteItem/ModalDeleteItem.js";
 const ButtonGroup = Button.Group;
 const { Header, Footer, Content, Sider } = Layout;
 
-class MainPage extends React.Component {
+class DashBoard extends React.Component {
   state = {
     activeCategoryId: 1,
     activePage: 1
@@ -179,4 +179,4 @@ class MainPage extends React.Component {
   }
 }
 
-export default MainPage;
+export default DashBoard;

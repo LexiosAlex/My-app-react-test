@@ -1,0 +1,38 @@
+.landing-page__title {
+    line-height: 48px;
+    font-size: 40px;
+    color: #FFFFFF;
+}
+
+.landing-page__menu {
+    padding-top: 10px;
+    margin-left: 70px;
+}
+
+.landing-page__sub-menu {
+    font-size: 20px;
+}
+
+.landing-page__title--main {
+    padding-top: 10px;
+    padding-left: 50px;
+}
+
+.landing-page__header {
+    display: flex;
+    flex-direction: row;
+}
+
+.items-container {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    display: grid;
+    max-width: 1000px;
+    grid-template-columns: 30% 30% 30%;
+}
+
+.landing-page__enter-button {
+    margin-top: 20px;
+    margin-left: auto;
+}

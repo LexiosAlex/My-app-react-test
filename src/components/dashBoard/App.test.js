@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import MainPage from "./mainPage";
+import DashBoard from "./DashBoard";
 
 it("renders without crashing", () => {
   const div = document.createElement("div");
-  ReactDOM.render(<MainPage />, div);
+  ReactDOM.render(<DashBoard />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

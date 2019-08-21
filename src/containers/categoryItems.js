@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import MainPage from "../components/mainPage/mainPage.js";
+import DashBoard from "../components/dashBoard/DashBoard.js";
 import {
   addCategory,
   deleteCategory,
@@ -77,4 +77,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MainPage);
+)(DashBoard);

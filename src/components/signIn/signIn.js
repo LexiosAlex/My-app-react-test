@@ -23,7 +23,7 @@ class loginForm extends React.Component {
 
     if (loginData.loggedIn) {
       console.log("выполн");
-      return <Redirect push to="/" />;
+      return <Redirect push to="/dashboard" />;
     }
 
     return (
