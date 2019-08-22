@@ -57,6 +57,15 @@ class loginForm extends React.Component {
           >
             Log in
           </Button>
+          <Button
+            style={{float: "right"}}
+            type="primary"
+            onClick={() => {
+              this.props.history.push("/");
+            }}
+          >
+            Go back
+          </Button>
         </Form.Item>
       </Form>
     );

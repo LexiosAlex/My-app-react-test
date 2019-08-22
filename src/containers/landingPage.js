@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import {LandingPage } from "../components/landingPage/LandingPage.js"
+import LandingPage from "../components/landingPage/LandingPage.js"
 import {
   asyncGetCategories,
   asyncGetProducts
@@ -8,7 +8,7 @@ import {
 const mapStateToProps = state => {
   return {
     categories: state.categoriesReducer,
-    productsData: state.productsData,
+    productsData: state.productsReducer,
   }
 };
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route} from 'react-router-dom'
 import DashBoard from "./containers/categoryItems.js"
 import SignIn from "./containers/singIn.js"
-import LandingPage from "./components/landingPage/LandingPage.js"
+import LandingPage from "./containers/landingPage.js"
 
 class App extends Component {
 

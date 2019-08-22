@@ -18,6 +18,10 @@
     padding-left: 50px;
 }
 
+.landing-page__title--main span {
+    color: darkblue;
+}
+
 .landing-page__header {
     display: flex;
     flex-direction: row;

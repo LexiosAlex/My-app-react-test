@@ -1,7 +1,7 @@
 import React from "react";
 import "./DashBoard.css";
 import { Layout, Row, Col, Button, Table, Spin } from "antd";
-import { Redirect } from "react-router-dom";
+import {Redirect, withRouter} from "react-router-dom";
 import filterActiveCategoryItems from "../../filterActiveCategoryItems.js";
 import Category from "../category/Category.js";
 import ModalAddCategory from "../modalAddCategory/ModalAddCategory.js";
