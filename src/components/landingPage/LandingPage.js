@@ -102,9 +102,7 @@ class LandingPage extends React.Component {
         <BrowserRouter>
           <Switch>
             <Route>
-              {productsData.isLoading ? (
-                <Spin size={"large"} tip="Загрузка товаров..." />
-              ) : (
+              {!productsData.isLoading ? (
                 productsData.list.map((it, i) => (
                   <Route
                     key={`router-product-${i}`}
@@ -114,7 +112,7 @@ class LandingPage extends React.Component {
                       />}
                   />
                 ))
-              )}
+              ) : ""}
             </Route>
           </Switch>
         </BrowserRouter>
