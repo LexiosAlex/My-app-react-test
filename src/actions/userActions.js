@@ -1,17 +1,8 @@
 import axios from "axios";
 
-// handleSubmit = e => {
-//   const {onChangeLoginStatus} = this.props;
-//   e.preventDefault();
-//   this.props.form.validateFields((err, values) => {
-//     console.log(values);
-//     if (err) {
-//       console.log(err);
-//     }
-
-export const onUnLogin = () => {
+export const logOut = () => {
   return {
-    type: "UNLOGIN"
+    type: "LOGOUT"
   };
 };
 
@@ -34,4 +25,3 @@ export const onAdminLogin = (username, password) => dispatch => {
     });
 };
 
-// });

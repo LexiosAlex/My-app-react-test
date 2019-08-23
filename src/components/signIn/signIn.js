@@ -2,24 +2,24 @@ import React from "react";
 import "antd/dist/antd.css";
 import "./signIn.css";
 import { Form, Icon, Input, Button } from "antd";
-import {Redirect, withRouter} from "react-router";
+import { Redirect, withRouter } from "react-router";
 
 class loginForm extends React.Component {
   handleSubmit = e => {
-    const {onAdminLogin} = this.props;
+    const { onAdminLogin } = this.props;
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       console.log(values);
       if (err) {
         console.log(err);
       }
-      onAdminLogin(values.username, values.password)
+      onAdminLogin(values.username, values.password);
     });
   };
 
   render() {
-    const {loginData} = this.props;
-    const { getFieldDecorator} = this.props.form;
+    const { loginData } = this.props;
+    const { getFieldDecorator } = this.props.form;
 
     if (loginData.loggedIn) {
       console.log("выполн");
@@ -58,7 +58,7 @@ class loginForm extends React.Component {
             Log in
           </Button>
           <Button
-            style={{float: "right"}}
+            style={{ float: "right" }}
             type="primary"
             onClick={() => {
               this.props.history.push("/");

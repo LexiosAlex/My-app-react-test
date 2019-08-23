@@ -87,7 +87,7 @@ class DashBoard extends React.Component {
       onDeleteCategory,
       onAddProduct,
       loginData,
-      onUnLogin
+      logOut
     } = this.props;
 
     if (!loginData.loggedIn) {
@@ -126,7 +126,7 @@ class DashBoard extends React.Component {
                     className="button-header"
                     type="primary"
                     onClick={() => {
-                      onUnLogin();
+                      logOut();
                     }}
                   >
                     Выйти

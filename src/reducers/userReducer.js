@@ -28,7 +28,7 @@ const userReducer = (
         isError: true
       };
 
-    case "UNLOGIN":
+    case "LOGOUT":
       return {
         ...state,
         loggedIn: false

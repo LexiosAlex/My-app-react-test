@@ -11,7 +11,7 @@ import {
 } from "../actions/dashboardActions.js";
 
 import {
-  onUnLogin
+  logOut
 } from "../actions/userActions.js"
 
 const mapStateToProps = state => {
@@ -23,8 +23,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  onUnLogin: () => {
-    dispatch(onUnLogin());
+  logOut: () => {
+    dispatch(logOut());
   },
 
   onGetCategories: () => {
