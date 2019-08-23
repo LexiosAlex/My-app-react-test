@@ -4,7 +4,7 @@ const { Header, Content } = Layout;
 
 class ProductComponent extends React.Component {
   render() {
-    const { product } = this.props;
+    const { product } = this.props.match.params;
 
     return (
       <div>

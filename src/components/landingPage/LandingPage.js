@@ -1,9 +1,8 @@
 import React from "react";
 import "./LandingPage.css";
 import { withRouter} from "react-router";
-import ProductComponent from "../productComponent/ProductComponent.js"
 import { Layout, Button, Menu, Card, Spin } from "antd";
-import {Route, Switch, BrowserRouter} from "react-router-dom";
+import {Link} from "react-router-dom";
 const { Header, Content } = Layout;
 const { SubMenu } = Menu;
 const { Meta } = Card;
@@ -85,37 +84,20 @@ class LandingPage extends React.Component {
                         src={`${it.imgUrl}`}
                       />
                     }
-                    onClick={() => {
-                      this.props.history.push(`/product${it.id}`);
-                    }}
                   >
                     <Meta
                       title={`${it.name}`}
                       description={`${it.price} руб`}
                     />
+                    <Link to={`/product/${it.id}`}>
+                      Подробнее
+                    </Link>
                   </Card>
                 ))
               )}
             </div>
           </Content>
         </Layout>
-        <BrowserRouter>
-          <Switch>
-            <Route>
-              {!productsData.isLoading ? (
-                productsData.list.map((it, i) => (
-                  <Route
-                    key={`router-product-${i}`}
-                    path={`/product${it.id}`}
-                    render={() => <ProductComponent
-                      product = {it}
-                      />}
-                  />
-                ))
-              ) : ""}
-            </Route>
-          </Switch>
-        </BrowserRouter>
       </div>
     );
   }
