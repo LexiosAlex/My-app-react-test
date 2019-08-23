@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route} from 'react-router-dom'
 import DashBoard from "./containers/categoryItems.js"
 import SignIn from "./containers/singIn.js"
 import LandingPage from "./containers/landingPage.js"
-import ProductComponent from "./components/productComponent/ProductComponent.js"
+import ProductPage from "./containers/productPage.js"
 
 class App extends Component {
 
@@ -25,8 +25,8 @@ class App extends Component {
               render={() => <DashBoard/>}
               />
             <Route
-              path="product/:id"
-              component={ProductComponent}
+              path="/product/:id"
+              component={ProductPage}
             />
           </Route>
         </Switch>

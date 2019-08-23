@@ -3,8 +3,17 @@ import { Layout,} from "antd";
 const { Header, Content } = Layout;
 
 class ProductComponent extends React.Component {
+
+  componentDidMount() {
+    const { getProductById } = this.props;
+    const { id } = this.props.match.params;
+    console.log(id);
+
+    getProductById(id)
+  }
+
   render() {
-    const { product } = this.props.match.params;
+    const {product} = this.props;
 
     return (
       <div>

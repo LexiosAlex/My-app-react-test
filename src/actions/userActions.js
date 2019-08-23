@@ -6,6 +6,21 @@ export const logOut = () => {
   };
 };
 
+export const getProductById = (id) => dispatch => {
+  dispatch({type: "LOADING_PRODUCT"});
+  axios
+    .get("/api/products/id",{
+    params: { id }
+  }).then(response => {
+    console.log(response);
+    dispatch({type: "PRODUCT_LOADED_SUCCESS"})
+  })
+    .catch(error => {
+      console.log(error);
+      dispatch({type: "PRODUCT_LOADING_ERROR"})
+    })
+};
+
 export const onAdminLogin = (username, password) => dispatch => {
   dispatch({ type: "LOGGING_IN" });
   axios
@@ -16,7 +31,7 @@ export const onAdminLogin = (username, password) => dispatch => {
     .then(response => {
       console.log("login response: ");
       console.log(response);
-      dispatch({ type: "LOGIN_SUCCESS" });
+      dispatch({ type: "LOGIN_SUCCESS", product: response.data.product });
     })
     .catch(error => {
       console.log("login error: ");

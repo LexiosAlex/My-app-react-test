@@ -89,7 +89,12 @@ class LandingPage extends React.Component {
                       title={`${it.name}`}
                       description={`${it.price} руб`}
                     />
-                    <Link to={`/product/${it.id}`}>
+                    <Link to={{
+                      path: `/product/${it.id}`,
+                      state: {
+                      product: it,
+                    }}
+                    }>
                       Подробнее
                     </Link>
                   </Card>

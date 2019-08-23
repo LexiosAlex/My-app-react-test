@@ -9,7 +9,8 @@ const ProductSchema = new Schema({
   name: { type: String, required: true, max: 100 },
   wholePrice: { type: Number, required: true },
   price: { type: Number, required: true },
-  categoryId: { type: Number, required: true }
+  categoryId: { type: Number, required: true },
+  description: {type: String, required: false}
 });
 
 autoIncrement.initialize(connection);

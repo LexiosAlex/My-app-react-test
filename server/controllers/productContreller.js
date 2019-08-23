@@ -2,6 +2,32 @@ import ProductModel from "../models/product.js";
 
 const PRODUCTS_PER_PAGE = 10;
 
+export const getProductById = (req, res) => {
+  console.log(req.query);
+  if (!req.query.id) {
+    res.send({
+      success: "false",
+      message: "id of product is required"
+    })
+  }
+
+  ProductModel.findById({ _id: req.query.id })
+    .exec((err, product) => {
+    if (err) {
+      res.status(404).send({
+        success: "false",
+        message: "product not found"
+      })
+    }
+    res.status(200).send({
+      success: "true",
+      message: "product retrieved successfully",
+      product: product
+    })
+  })
+
+};
+
 export const getProducts = (req, res) => {
   console.log(req.query);
   ProductModel.find({ categoryId: req.query.categoryId })
