@@ -6,6 +6,7 @@ const productPageReducer = (
   },
   action
 ) => {
+  console.log(action);
   switch (action.type) {
     case "LOADING_PRODUCT" :
       return {

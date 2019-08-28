@@ -6,7 +6,7 @@ import {
 
 const mapStateToProps = state => {
   return {
-    product: state.productPageReducer
+    data: state.productPageReducer
   }
 };
 

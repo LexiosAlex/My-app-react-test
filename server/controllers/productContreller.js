@@ -11,8 +11,9 @@ export const getProductById = (req, res) => {
     })
   }
 
-  ProductModel.findById({ _id: req.query.id })
+  ProductModel.find({ _id: req.query.id })
     .exec((err, product) => {
+      console.log(product);
     if (err) {
       res.status(404).send({
         success: "false",
@@ -22,7 +23,7 @@ export const getProductById = (req, res) => {
     res.status(200).send({
       success: "true",
       message: "product retrieved successfully",
-      product: product
+      product: product[0]
     })
   })
 

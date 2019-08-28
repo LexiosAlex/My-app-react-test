@@ -13,7 +13,7 @@ export const getProductById = (id) => dispatch => {
     params: { id }
   }).then(response => {
     console.log(response);
-    dispatch({type: "PRODUCT_LOADED_SUCCESS"})
+    dispatch({type: "PRODUCT_LOADED_SUCCESS", product: response.data.product})
   })
     .catch(error => {
       console.log(error);
@@ -31,7 +31,7 @@ export const onAdminLogin = (username, password) => dispatch => {
     .then(response => {
       console.log("login response: ");
       console.log(response);
-      dispatch({ type: "LOGIN_SUCCESS", product: response.data.product });
+      dispatch({ type: "LOGIN_SUCCESS" });
     })
     .catch(error => {
       console.log("login error: ");
